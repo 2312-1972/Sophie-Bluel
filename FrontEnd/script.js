@@ -1,3 +1,5 @@
+//export (callApi);
+
 //création d'une variable Url=adresse API utilisé
 const url = "http://localhost:5678/api/works";
 //création d'une variable init
@@ -9,7 +11,7 @@ const init = {
 };
 //fonction asynchrone formulant une requète a l' API avec fetch
 // utilisation des paramètres "resolve ,reject" confirmant le bon chemin.
-async function callApi() {
+ async function callApi() {
   return new Promise((resolve, reject) => {
     fetch(url, init).then((response) => {
       if (response.ok) {

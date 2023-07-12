@@ -1,19 +1,25 @@
-const apiCategories = "http://localhost:5678/api/categories";
+//import {callApi} from"./script.js";
 
-async function callApicategorie() {
-  return new Promise((resolve, reject) => {
-    fetch(apiCategories, init).then((response) => {
-      if (response.ok) {
-        resolve(response.json());
-      } else {
-        reject(new Error("Impossible de contacter le serveur"));
-      }
-    });
-  });
-}
+// const apiCategories = "http://localhost:5678/api/categories";
+
+// async function callApicategorie() {
+//   return new Promise((resolve, reject) => {
+//     fetch(apiCategories, init).then((response) => {
+//       if (response.ok) {
+//         resolve(response.json());
+//       } else {
+//         reject(new Error("Impossible de contacter le serveur"));
+//       }
+//     });
+//   });
+// }
+callApi();
+console.log(callApi);
+
+let newset = [];
 
 const categoryDisplay = async () => {
-  const categories = await callApicategorie();
+  const categoryId = await callApi();
   const portfolio = document.querySelector("#portfolio");
 
   //bouton Tous
@@ -21,7 +27,7 @@ const categoryDisplay = async () => {
   allButton.textContent = "Tous";
   allButton.dataset.categoryId = "all";
   allButton.addEventListener("click", () => {
-    console.log(categories.filter((All) => "all"));
+    console.log(categoryId.filter((All) => "all"));
   });
 
   //////////////////////////////////////////
@@ -39,7 +45,9 @@ const categoryDisplay = async () => {
   objectButton.textContent = "Objets";
   objectButton.dataset.categoryId = 1;
   objectButton.addEventListener("click", () => {
-    console.log(categories.filter((articles) => articles.name === "Objets"));
+    console.log(
+      categoryId.filter((categoryId) => categoryId.category.id === 1)
+    );
   });
 
   //ajout du bouton Appartements
@@ -48,7 +56,7 @@ const categoryDisplay = async () => {
   appartementsButton.dataset.categoryId = 2;
   appartementsButton.addEventListener("click", () => {
     console.log(
-      categories.filter((articles) => articles.name === "Appartements")
+      categoryId.filter((categoryId) => categoryId.category.id === 2)
     );
   });
   //ajout du bouton Hotels & restaurants
@@ -57,7 +65,7 @@ const categoryDisplay = async () => {
   hotelsRestaurantsButton.dataset.categoryId = 3;
   hotelsRestaurantsButton.addEventListener("click", () => {
     console.log(
-      categories.filter((articles) => articles.name === "Hotels & restaurants")
+      categoryId.filter((categoryId) => categoryId.category.id === 3)
     );
   });
   buttons.appendChild(objectButton);
