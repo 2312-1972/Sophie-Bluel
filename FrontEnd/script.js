@@ -1,4 +1,4 @@
-//export (callApi);
+//export {callApi};
 
 //création d'une variable Url=adresse API utilisé
 const url = "http://localhost:5678/api/works";

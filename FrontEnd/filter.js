@@ -1,19 +1,4 @@
-//import {callApi} from"./script.js";
-
-// const apiCategories = "http://localhost:5678/api/categories";
-
-// async function callApicategorie() {
-//   return new Promise((resolve, reject) => {
-//     fetch(apiCategories, init).then((response) => {
-//       if (response.ok) {
-//         resolve(response.json());
-//       } else {
-//         reject(new Error("Impossible de contacter le serveur"));
-//       }
-//     });
-//   });
-// }
-callApi();
+console.log(callApi);
 ficheTravaux();
 let newset = [];
 
@@ -45,10 +30,9 @@ const categoryDisplay = async () => {
   const objectButton = document.createElement("button");
   objectButton.textContent = "Objets";
   objectButton.dataset.categoryId = 1;
-  objectButton.addEventListener("click", function () {
-    // categoryId.filter (function(category) {
-    // return categoryId.category.id === 1;});
-    const objetsFiltre = categoryId.filter(
+  
+  objectButton.addEventListener("click",  () => {
+  const objetsFiltre = categoryId.filter(
       (categoryId) => categoryId.category.id === 1
     );
 
@@ -84,3 +68,4 @@ const categoryDisplay = async () => {
 };
 
 categoryDisplay();
+
