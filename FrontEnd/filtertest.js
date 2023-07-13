@@ -16,7 +16,7 @@
 callApi();
 console.log(callApi);
 
-let newset = [];
+let newset = [callApi];
 
 const categoryDisplay = async () => {
   const categoryId = await callApi();
@@ -27,7 +27,9 @@ const categoryDisplay = async () => {
   allButton.textContent = "Tous";
   allButton.dataset.categoryId = "all";
   allButton.addEventListener("click", () => {
-    console.log(categoryId.filter((All) => "all"));
+    const allFiltre = categoryId.filter((All) => "all");
+
+    console.log(allFiltre);
   });
 
   //////////////////////////////////////////
@@ -44,10 +46,13 @@ const categoryDisplay = async () => {
   const objectButton = document.createElement("button");
   objectButton.textContent = "Objets";
   objectButton.dataset.categoryId = 1;
-  objectButton.addEventListener("click", () => {
-    console.log(
-      categoryId.filter((categoryId) => categoryId.category.id === 1)
+  objectButton.addEventListener("click", function () {
+    // categoryId.filter (function(category) {
+    // return categoryId.category.id === 1;});
+    const objetsFiltre = categoryId.filter(
+      (categoryId) => categoryId.category.id === 1
     );
+    console.log(objetsFiltre);
   });
 
   //ajout du bouton Appartements
@@ -55,18 +60,20 @@ const categoryDisplay = async () => {
   appartementsButton.textContent = "Appartements";
   appartementsButton.dataset.categoryId = 2;
   appartementsButton.addEventListener("click", () => {
-    console.log(
-      categoryId.filter((categoryId) => categoryId.category.id === 2)
+    const appartementsFiltre = categoryId.filter(
+      (categoryId) => categoryId.category.id === 2
     );
+    console.log(appartementsFiltre);
   });
   //ajout du bouton Hotels & restaurants
   const hotelsRestaurantsButton = document.createElement("button");
   hotelsRestaurantsButton.textContent = "Hotels & restaurants";
   hotelsRestaurantsButton.dataset.categoryId = 3;
   hotelsRestaurantsButton.addEventListener("click", () => {
-    console.log(
-      categoryId.filter((categoryId) => categoryId.category.id === 3)
+    const hotelsrestaurantsFiltre = categoryId.filter(
+      (categoryId) => categoryId.category.id === 3
     );
+    console.log(hotelsrestaurantsFiltre);
   });
   buttons.appendChild(objectButton);
   buttons.appendChild(appartementsButton);
