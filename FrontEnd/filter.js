@@ -1,32 +1,34 @@
-// let categories = new Set();
-// categories.add({ id: 0, name: "Tous" });
-// let filters = document.querySelector(".filters");
-// let articles = [];
+//import {callApi} from"./script.js";
 
-const apiCategories = "http://localhost:5678/api/categories";
+// const apiCategories = "http://localhost:5678/api/categories";
 
-
-
-
-const Categories = async () => {
-  const response = await fetch(apiCategories);
-  if (response.ok === true) {
-    return response.json();
-  } else {
-    reject(new Error("Impossible de contacter le serveur"));
-  }
-};
+// async function callApicategorie() {
+//   return new Promise((resolve, reject) => {
+//     fetch(apiCategories, init).then((response) => {
+//       if (response.ok) {
+//         resolve(response.json());
+//       } else {
+//         reject(new Error("Impossible de contacter le serveur"));
+//       }
+//     });
+//   });
+// }
+callApi();
+ficheTravaux();
+let newset = [];
 
 const categoryDisplay = async () => {
-  const categories = await Categories();
+  const categoryId = await callApi();
   const portfolio = document.querySelector("#portfolio");
+
   //bouton Tous
   const allButton = document.createElement("button");
   allButton.textContent = "Tous";
   allButton.dataset.categoryId = "all";
   allButton.addEventListener("click", () => {
-    // const tous = allButton.dataset.categoryId;
-    console.log(categories.filter((All) => "all"));
+    const allFiltre = categoryId.filter((All) => "all");
+
+    console.table(allFiltre);
   });
 
   //////////////////////////////////////////
@@ -39,26 +41,46 @@ const categoryDisplay = async () => {
   // Ajout du bouton "Tous" au début  des boutons
   buttons.appendChild(allButton);
 
-  //autre solution mais je ne trouve pas comment filter
-  // ajout des boutons Objets, Appartements, Hotels & restaurants
-  categories.forEach((catData) => {
-    const button = document.createElement("button");
-    button.textContent = catData.name;
-    button.dataset.categoryId = catData.id;
+  //ajout du bouton objets
+  const objectButton = document.createElement("button");
+  objectButton.textContent = "Objets";
+  objectButton.dataset.categoryId = 1;
+  objectButton.addEventListener("click", function () {
+    // categoryId.filter (function(category) {
+    // return categoryId.category.id === 1;});
+    const objetsFiltre = categoryId.filter(
+      (categoryId) => categoryId.category.id === 1
+    );
 
-    button.addEventListener("click", () => {
-      //     //   const buton = button;
-      //     //   .dataset.categoryId;
-
-      console.log(categories.filter((articles) => articles.name !="Objets"));
-    //   console.log(categories.filter((articles) => articles.name === "Appartements"));
-    //   console.log(categories.filter((articles) => articles.name === "Hotels & restaurants"));
-     });
-
-    buttons.appendChild(button);
+    console.table(objetsFiltre);
   });
+
+  //ajout du bouton Appartements
+  const appartementsButton = document.createElement("button");
+  appartementsButton.textContent = "Appartements";
+  appartementsButton.dataset.categoryId = 2;
+  appartementsButton.addEventListener("click", () => {
+    const appartementsFiltre = categoryId.filter(
+      (categoryId) => categoryId.category.id === 2
+    );
+    console.table(appartementsFiltre);
+  });
+  //ajout du bouton Hotels & restaurants
+  const hotelsRestaurantsButton = document.createElement("button");
+  hotelsRestaurantsButton.textContent = "Hotels & restaurants";
+  hotelsRestaurantsButton.dataset.categoryId = 3;
+  hotelsRestaurantsButton.addEventListener("click", () => {
+    const hotelsrestaurantsFiltre = categoryId.filter(
+      (categoryId) => categoryId.category.id === 3
+    );
+    console.table(hotelsrestaurantsFiltre);
+  });
+  buttons.appendChild(objectButton);
+  buttons.appendChild(appartementsButton);
+  buttons.appendChild(hotelsRestaurantsButton);
+
   // j'insère les  boutons juste avant les projets
-  portfolio.insertBefore(buttons, title.nextElementSibling);
+  document.querySelector("#portfolio").prepend(buttons);
 };
 
 categoryDisplay();
