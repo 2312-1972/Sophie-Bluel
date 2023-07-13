@@ -15,7 +15,7 @@
 // }
 callApi();
 console.log(callApi);
-
+ficheTravaux();
 let newset = [callApi];
 
 const categoryDisplay = async () => {
@@ -29,7 +29,7 @@ const categoryDisplay = async () => {
   allButton.addEventListener("click", () => {
     const allFiltre = categoryId.filter((All) => "all");
 
-    console.log(allFiltre);
+    console.table(allFiltre);
   });
 
   //////////////////////////////////////////
@@ -47,12 +47,11 @@ const categoryDisplay = async () => {
   objectButton.textContent = "Objets";
   objectButton.dataset.categoryId = 1;
   objectButton.addEventListener("click", function () {
-    // categoryId.filter (function(category) {
-    // return categoryId.category.id === 1;});
-    const objetsFiltre = categoryId.filter(
-      (categoryId) => categoryId.category.id === 1
-    );
-    console.log(objetsFiltre);
+    const objetsFiltre = categoryId.filter(function (category) {
+      return category.id === 1;
+    });
+
+    //console.table(objetsFiltre);
   });
 
   //ajout du bouton Appartements
@@ -60,20 +59,21 @@ const categoryDisplay = async () => {
   appartementsButton.textContent = "Appartements";
   appartementsButton.dataset.categoryId = 2;
   appartementsButton.addEventListener("click", () => {
-    const appartementsFiltre = categoryId.filter(
-      (categoryId) => categoryId.category.id === 2
-    );
-    console.log(appartementsFiltre);
+    const appartementsFiltre = categoryId.filter(function (category) {
+      categoryId.category.id === 2;
+    });
+    appartementsFiltre();
+    // console.table(appartementsFiltre);
   });
   //ajout du bouton Hotels & restaurants
   const hotelsRestaurantsButton = document.createElement("button");
   hotelsRestaurantsButton.textContent = "Hotels & restaurants";
   hotelsRestaurantsButton.dataset.categoryId = 3;
   hotelsRestaurantsButton.addEventListener("click", () => {
-    const hotelsrestaurantsFiltre = categoryId.filter(
-      (categoryId) => categoryId.category.id === 3
-    );
-    console.log(hotelsrestaurantsFiltre);
+    const hotelsrestaurantsFiltre = categoryId.filter(function (category) {
+      categoryId.category.id === 3;
+    });
+    hotelsrestaurantsFiltre();
   });
   buttons.appendChild(objectButton);
   buttons.appendChild(appartementsButton);

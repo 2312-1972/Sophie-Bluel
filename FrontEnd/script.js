@@ -24,7 +24,7 @@ const init = {
 }
 //création de la fonction asynchrone récupérant la promesse couplé a await
 //permettant au reste du script de continuer à s'exécuter.
-const fichetravaux = async () => {
+const ficheTravaux = async () => {
   const travaux = await callApi();
   const gallery = document.querySelector(".gallery");
 
@@ -45,4 +45,4 @@ const fichetravaux = async () => {
   });
 };
 //appel de la variable pour effet
-fichetravaux();
+ficheTravaux();
