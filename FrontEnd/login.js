@@ -42,6 +42,7 @@ const lostMdpBlock = document.createElement("div");
 const lostMdp = document.createElement("a");
 lostMdp.href = "./index.html";
 lostMdp.textContent = "Mot de passe oublié";
+lostMdp.style.paddingLeft = "20px";
 contact.appendChild(lostMdpBlock);
 lostMdpBlock.appendChild(lostMdp);
 
@@ -49,3 +50,20 @@ let a = document.querySelector("a");
 a.onclick = () => {
   return confirm("Mot de passe Oublié");
 };
+
+const footer = document.createElement("footer");
+footer.id = "#footer";
+const navFooter = document.createElement("nav");
+navFooter.id = "#navFooter";
+const ulFooter = document.createElement("ul");
+ulFooter.id = "#ulFooter";
+const liFooter = document.createElement("li");
+liFooter.textContent = "Mentions légales";
+liFooter.style.paddingTop="100px";
+liFooter.id = "#liFooter";
+
+lostMdpBlock.appendChild(footer);
+footer.appendChild(navFooter);
+navFooter.appendChild(ulFooter);
+ulFooter.appendChild(liFooter);
+
