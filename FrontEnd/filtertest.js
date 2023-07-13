@@ -81,7 +81,7 @@ const categoryDisplay = async () => {
   buttons.appendChild(hotelsRestaurantsButton);
 
   // j'insère les  boutons juste avant les projets
-  portfolio.insertBefore(buttons, title.nextElementSibling);
+  document.querySelector("#portfolio").prepend(buttons);
 };
 
 categoryDisplay();
