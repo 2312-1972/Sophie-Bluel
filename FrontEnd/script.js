@@ -21,7 +21,11 @@ const init = {
       }
     });
   });
-}
+};
+
+
+//navHeader();
+
 //création de la fonction asynchrone récupérant la promesse couplé a await
 //permettant au reste du script de continuer à s'exécuter.
 const ficheTravaux = async () => {

@@ -1,4 +1,4 @@
-console.log(callApi);
+//console.log(callApi);
 ficheTravaux();
 let newset = [];
 
@@ -19,9 +19,11 @@ const categoryDisplay = async () => {
   //////////////////////////////////////////
 
   const title = portfolio.querySelector("h2");
+
   const buttons = document.createElement("div");
   // Ajout d'une classe pour le style CSS
   buttons.classList.add("buttons");
+  buttons.style.marginTop = "30px";
 
   // Ajout du bouton "Tous" au début  des boutons
   buttons.appendChild(allButton);
@@ -30,9 +32,9 @@ const categoryDisplay = async () => {
   const objectButton = document.createElement("button");
   objectButton.textContent = "Objets";
   objectButton.dataset.categoryId = 1;
-  
-  objectButton.addEventListener("click",  () => {
-  const objetsFiltre = categoryId.filter(
+
+  objectButton.addEventListener("click", () => {
+    const objetsFiltre = categoryId.filter(
       (categoryId) => categoryId.category.id === 1
     );
 
@@ -59,13 +61,14 @@ const categoryDisplay = async () => {
     );
     console.table(hotelsrestaurantsFiltre);
   });
+
+  title.appendChild(buttons);
   buttons.appendChild(objectButton);
   buttons.appendChild(appartementsButton);
   buttons.appendChild(hotelsRestaurantsButton);
 
   // j'insère les  boutons juste avant les projets
-  document.querySelector("#portfolio").prepend(buttons);
+  //document.querySelector("h2").prepend(buttons);
 };
 
 categoryDisplay();
-

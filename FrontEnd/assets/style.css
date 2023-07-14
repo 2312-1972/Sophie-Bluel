@@ -133,6 +133,7 @@ body {
   margin: auto;
   font-family: "Work Sans";
   font-size: 14px;
+ 
 }
 header {
   display: flex;
@@ -185,6 +186,17 @@ nav li {
   color: #b1663c;
 }
 li:hover {
+  color: #b1663c;
+}
+.navfooter {
+  padding: 0 10px;
+  font-size: 1.5em;
+  font: inherit;
+  vertical-align: baseline;
+  text-decoration: none;
+  color: black;
+}
+.navfooter:hover {
   color: #b1663c;
 }
 #introduction {
@@ -308,4 +320,5 @@ footer nav ul {
   display: flex;
   justify-content: flex-end;
   margin: 2em;
+  margin-bottom: 5px;
 }

@@ -19,16 +19,40 @@ async function callApi() {
     });
   });
 }
-const liProjets = document.querySelector("#projets");
-//création du lien vers la page projets
-const lienProjets = document.createElement("a");
-lienProjets.href = "./index.html";
-lienProjets.innerText = "projets";
-// lienProjets.style = "text-decoration:none";
-// lienProjets.style.color = "black";
-document.querySelector("lienProjets");
-lienProjets.className = "liheader";
-liProjets.appendChild(lienProjets);
+
+function navHeader() {
+  // création dynamique de la nav header +liens actifs//
+  //lien projet
+  const liProjets = document.querySelector("#projets");
+  //création du lien vers la page projets
+  const lienProjets = document.createElement("a");
+  lienProjets.href = "./index.html";
+  lienProjets.innerText = "projets";
+  document.querySelector("lienProjets");
+  lienProjets.className = "liheader";
+  liProjets.appendChild(lienProjets);
+
+  //lien contact
+  const liContact = document.querySelector("#contacter");
+  //création du lien vers la page contact
+  const lienContact = document.createElement("a");
+  lienContact.href = "#";
+  lienContact.innerText = "contact";
+  document.querySelector("lienContact");
+  lienContact.className = "liheader";
+  liContact.appendChild(lienContact);
+
+  //lien Login
+  const liLogin = document.querySelector("#login");
+  //création du lien vers la page contact
+  const lienLogin = document.createElement("a");
+  lienLogin.href = "#";
+  lienLogin.innerText = "login";
+  document.querySelector("lienLogin");
+  lienLogin.className = "liheader";
+  liLogin.appendChild(lienLogin);
+}
+navHeader();
 
 //effacement de la zone introduction et portfolio
 document.querySelector("#introduction").remove();
@@ -57,6 +81,7 @@ lostMdp.href = "./index.html";
 lostMdp.textContent = "Mot de passe oublié";
 lostMdp.style.paddingLeft = "20px";
 lostMdp.id = "lost";
+
 contact.appendChild(lostMdpBlock);
 lostMdpBlock.appendChild(lostMdp);
 
@@ -68,15 +93,25 @@ navFooter.id = "#navFooter";
 const ulFooter = document.createElement("ul");
 ulFooter.id = "#ulFooter";
 const liFooter = document.createElement("li");
-liFooter.textContent = "Mentions légales";
-liFooter.style.paddingTop = "100px";
-liFooter.id = "#liFooter";
+const lienLiFooter = document.createElement("a");
+lienLiFooter.textContent = "Mentions légales";
+lienLiFooter.style.paddingTop = "100px";
+lienLiFooter.id = "#LiFooter";
+lienLiFooter.href = "#";
+document.querySelector("liFooter");
+lienLiFooter.className = "navfooter";
 
 footer.appendChild(navFooter);
 navFooter.appendChild(ulFooter);
 ulFooter.appendChild(liFooter);
+liFooter.appendChild(lienLiFooter);
 
 let a = document.querySelector("#lost");
 a.onclick = () => {
   return confirm("Mot de passe Oublié");
 };
+
+
+
+
+
