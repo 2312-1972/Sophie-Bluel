@@ -173,7 +173,17 @@ nav li {
   padding: 0 10px;
   font-size: 1.2em;
 }
-
+.liheader {
+  padding: 0 10px;
+  font-size: 2em;
+  font: inherit;
+  vertical-align: baseline;
+  text-decoration: none;
+  color: black;
+}
+.liheader:hover {
+  color: #b1663c;
+}
 li:hover {
   color: #b1663c;
 }
@@ -206,39 +216,39 @@ li:hover {
 }
 
 .buttons {
-	display: flex;
-	justify-content: center;
-  }
-  
-  button {
-	  min-width: 5rem;
-	  height: 2rem;
-	  border-radius: 2rem;
-	  font-family: 'Syne';
-	  border: #1D6154 solid 2px;
-	  margin-left: 1rem;
-	  margin-bottom: 2rem;
-	  color: #1D6154;
-  }
-  button:hover{
-	  background-color: #1D6154;
-	  color: white;
-	  cursor: pointer;
-  }
+  display: flex;
+  justify-content: center;
+}
 
-  .filter {
-	font-size: 16px;
-	font-weight: 700;
-	color: #1D6154;
-	border: 1px solid #1D6154;
-	border-radius: 60px;
-	padding: 9px 20px;
-	cursor: pointer;
+button {
+  min-width: 5rem;
+  height: 2rem;
+  border-radius: 2rem;
+  font-family: "Syne";
+  border: #1d6154 solid 2px;
+  margin-left: 1rem;
+  margin-bottom: 2rem;
+  color: #1d6154;
+}
+button:hover {
+  background-color: #1d6154;
+  color: white;
+  cursor: pointer;
+}
+
+.filter {
+  font-size: 16px;
+  font-weight: 700;
+  color: #1d6154;
+  border: 1px solid #1d6154;
+  border-radius: 60px;
+  padding: 9px 20px;
+  cursor: pointer;
 }
 
 .filter__selected {
-	color: white;
-	background-color: #1D6154;
+  color: white;
+  background-color: #1d6154;
 }
 
 .gallery {
