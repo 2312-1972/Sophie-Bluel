@@ -1,8 +1,7 @@
-//console.log(callApi);
 ficheTravaux();
 let newset = [];
 
-const categoryDisplay = async () => {
+  const categoryDisplay = async () => {
   const categoryId = await callApi();
   const portfolio = document.querySelector("#portfolio");
 
@@ -11,7 +10,9 @@ const categoryDisplay = async () => {
   allButton.textContent = "Tous";
   allButton.dataset.categoryId = "all";
   allButton.addEventListener("click", () => {
-    const allFiltre = categoryId.filter((All) => "all");
+    const allFiltre = categoryId.filter((All) => {
+      return "all";
+    });
 
     console.table(allFiltre);
   });
@@ -34,9 +35,9 @@ const categoryDisplay = async () => {
   objectButton.dataset.categoryId = 1;
 
   objectButton.addEventListener("click", () => {
-    const objetsFiltre = categoryId.filter(
-      (categoryId) => categoryId.category.id === 1
-    );
+    const objetsFiltre = categoryId.filter((categoryId) => {
+      return categoryId.category.id === 1;
+    });
 
     console.table(objetsFiltre);
   });
@@ -46,9 +47,9 @@ const categoryDisplay = async () => {
   appartementsButton.textContent = "Appartements";
   appartementsButton.dataset.categoryId = 2;
   appartementsButton.addEventListener("click", () => {
-    const appartementsFiltre = categoryId.filter(
-      (categoryId) => categoryId.category.id === 2
-    );
+    const appartementsFiltre = categoryId.filter((categoryId) => {
+      return categoryId.category.id === 2;
+    });
     console.table(appartementsFiltre);
   });
   //ajout du bouton Hotels & restaurants
@@ -56,9 +57,9 @@ const categoryDisplay = async () => {
   hotelsRestaurantsButton.textContent = "Hotels & restaurants";
   hotelsRestaurantsButton.dataset.categoryId = 3;
   hotelsRestaurantsButton.addEventListener("click", () => {
-    const hotelsrestaurantsFiltre = categoryId.filter(
-      (categoryId) => categoryId.category.id === 3
-    );
+    const hotelsrestaurantsFiltre = categoryId.filter((categoryId) => {
+      return categoryId.category.id === 3;
+    });
     console.table(hotelsrestaurantsFiltre);
   });
 

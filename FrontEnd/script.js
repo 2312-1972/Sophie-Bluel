@@ -1,5 +1,3 @@
-//export {callApi};
-
 //création d'une variable Url=adresse API utilisé
 const url = "http://localhost:5678/api/works";
 //création d'une variable init
@@ -24,7 +22,7 @@ const init = {
 };
 
 
-//navHeader();
+
 
 //création de la fonction asynchrone récupérant la promesse couplé a await
 //permettant au reste du script de continuer à s'exécuter.
