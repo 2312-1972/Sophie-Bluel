@@ -9,7 +9,7 @@ const init = {
 };
 //fonction asynchrone formulant une requète a l' API avec fetch
 // utilisation des paramètres "resolve ,reject" confirmant le bon chemin.
- async function callApi() {
+async function callApi() {
   return new Promise((resolve, reject) => {
     fetch(url, init).then((response) => {
       if (response.ok) {
@@ -19,12 +19,41 @@ const init = {
       }
     });
   });
-};
+}
+function navHeader() {
+  // création dynamique de la nav header +liens actifs//
+  //lien projet
+  const liProjets = document.querySelector("#projets");
+  //création du lien vers la page projets
+  const lienProjets = document.createElement("a");
+  lienProjets.href = "./index.html";
+  lienProjets.innerText = "projets";
+  document.querySelector("lienProjets");
+  lienProjets.className = "liheader";
+  liProjets.appendChild(lienProjets);
 
+  //lien contact
+  const liContact = document.querySelector("#contacter");
+  //création du lien vers la page contact
+  const lienContact = document.createElement("a");
+  lienContact.href = "#";
+  lienContact.innerText = "contact";
+  document.querySelector("lienContact");
+  lienContact.className = "liheader";
+  liContact.appendChild(lienContact);
 
-
-
-//création de la fonction asynchrone récupérant la promesse couplé a await
+  //lien Login
+  const liLogin = document.querySelector("#login");
+  //création du lien vers la page contact
+  const lienLogin = document.createElement("a");
+  lienLogin.href = "./login.html";
+  lienLogin.innerText = "login";
+  document.querySelector("lienLogin");
+  lienLogin.className = "liheader";
+  liLogin.appendChild(lienLogin);
+}
+navHeader();
+// récupération de  la promesse couplé a await
 //permettant au reste du script de continuer à s'exécuter.
 const ficheTravaux = async () => {
   const travaux = await callApi();

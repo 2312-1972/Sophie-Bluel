@@ -11,6 +11,7 @@ const categoryDisplay = async () => {
   allButton.addEventListener("click", () => {
     const allFiltre = categoryId.filter((All) => {
       return "all";
+      
     });
     document.querySelector(".gallery").innerHTML = allFiltre;
     console.table(allFiltre);
@@ -32,6 +33,7 @@ const categoryDisplay = async () => {
   objectButton.dataset.categoryId = 1;
 
   objectButton.addEventListener("click", () => {
+    
     const objetsFiltre = categoryId.filter((categoryId) => {
       return categoryId.category.id === 1;
     });
@@ -40,6 +42,8 @@ const categoryDisplay = async () => {
     // objetsFiltre.textContent = imageData.title;
     document.querySelector(".gallery").innerHTML = objetsFiltre;
     console.table(objetsFiltre);
+    //genererFilter();
+
   });
 
   //ajout du bouton Appartements
