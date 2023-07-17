@@ -1,7 +1,6 @@
-ficheTravaux();
 let newset = [];
 
-  const categoryDisplay = async () => {
+const categoryDisplay = async () => {
   const categoryId = await callApi();
   const portfolio = document.querySelector("#portfolio");
 
@@ -13,11 +12,9 @@ let newset = [];
     const allFiltre = categoryId.filter((All) => {
       return "all";
     });
-
+    document.querySelector(".gallery").innerHTML = allFiltre;
     console.table(allFiltre);
   });
-
-  //////////////////////////////////////////
 
   const title = portfolio.querySelector("h2");
 
@@ -38,7 +35,10 @@ let newset = [];
     const objetsFiltre = categoryId.filter((categoryId) => {
       return categoryId.category.id === 1;
     });
-
+    // objetsFiltre.src = imageData.imageUrl;
+    // objetsFiltre.dataset.categoryId = imageData.categoryId;
+    // objetsFiltre.textContent = imageData.title;
+    document.querySelector(".gallery").innerHTML = objetsFiltre;
     console.table(objetsFiltre);
   });
 
@@ -50,6 +50,7 @@ let newset = [];
     const appartementsFiltre = categoryId.filter((categoryId) => {
       return categoryId.category.id === 2;
     });
+    document.querySelector(".gallery").innerHTML = appartementsFiltre;
     console.table(appartementsFiltre);
   });
   //ajout du bouton Hotels & restaurants
@@ -60,6 +61,7 @@ let newset = [];
     const hotelsrestaurantsFiltre = categoryId.filter((categoryId) => {
       return categoryId.category.id === 3;
     });
+    document.querySelector(".gallery").innerHTML = hotelsrestaurantsFiltre;
     console.table(hotelsrestaurantsFiltre);
   });
 
