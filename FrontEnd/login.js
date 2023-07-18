@@ -1,25 +1,4 @@
-const url = "http://localhost:5678/api/works";
-//création d'une variable init
-const init = {
-  method: "GET",
-  headers: {
-    Accept: "application/json",
-  },
-};
-//fonction asynchrone formulant une requète a l' API avec fetch
-// utilisation des paramètres "resolve ,reject" confirmant le bon chemin.
-async function callApi() {
-  return new Promise((resolve, reject) => {
-    fetch(url, init).then((response) => {
-      if (response.ok) {
-        resolve(response.json());
-      } else {
-        reject(new Error("Impossible de contacter le serveur"));
-      }
-    });
-  });
-}
-
+// ajout dynamique de la barre de naviguation
 function navHeader() {
   // création dynamique de la nav header +liens actifs//
   //lien projet
@@ -54,16 +33,14 @@ function navHeader() {
 }
 navHeader();
 
-//effacement de la zone introduction et portfolio
+//j'efface de façon dynamique  la zone introduction et portfolio
 document.querySelector("#introduction").remove();
 document.querySelector("#portfolio").remove();
-
-//vérification si j'interviens bien sur le DOM
+///////////////////////////////////////////////////
+//test de vérification si j'interviens bien sur le DOM
 //document.write("ca marche");
+//////////////////////////////////////////////////
 
-// Projets.onclick =()=>{
-//     return confirm ("retour vers mes projets")
-// };
 //création du bouton se connecter
 const buttons = document.createElement("div");
 // Ajout d'une classe pour le style CSS
@@ -110,26 +87,55 @@ let a = document.querySelector("#lost");
 a.onclick = () => {
   return confirm("Mot de passe Oublié");
 };
-   const urlLogin="http://localhost:5678/api/users/login";
-   const init2 = {
-    method: "POST",
-    headers: {
-      Accept: "application/json",
-    },
-  };
-   //fonction asynchrone formulant une requète a l' API pour le login
-   
-        // utilisation des paramètres "resolve ,reject" confirmant le bon chemin.
-        async function callLogin() {
-          return new Promise((resolve, reject) => {
-            fetch(urlLogin, init2).then((response) => {
-              if (response.ok) {
-                resolve(response.json());
-              } else {
-                reject(new Error("Impossible de contacter le serveur"));
-              }
-            });
-          });
-        };
 
+////////////////////////////////////////////////
+//             code de connection
+///////////////////////////////////////////////
+// Mise à jour de la fonction callLogin() pour utiliser la méthode POST
+//+ corps de la requête +stockage du token
+// Définition de l'URL de l'API pour la connexion
+const urlLogin = "http://localhost:5678/api/users/login";
 
+// Fonction pour effectuer la requête POST de connexion
+async function callLogin(email, password) {
+  try {
+    const response = await fetch(urlLogin, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify({ email: email, password: password }),
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+      const token = data.token; // Récupération du token depuis les données de la réponse
+      // vérif du token
+      console.log(token);
+    } else {
+      throw new Error("Impossible de contacter le serveur");
+    }
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Récupération des champs d'entrée d'email et de mot de passe
+const emailInput = document.getElementById("email");
+const passwordInput = document.getElementById("password");
+
+// Récupération du bouton "Se connecter"
+const seConnecterButton = document.querySelector(".buttons button");
+
+// Ajout d'un gestionnaire d'événement au clic sur le bouton "Se connecter"
+seConnecterButton.addEventListener("click", async () => {
+  try {
+    const email = emailInput.value;
+    const password = passwordInput.value;
+
+    await callLogin(email, password);
+  } catch (error) {
+    console.error(error);
+  }
+});

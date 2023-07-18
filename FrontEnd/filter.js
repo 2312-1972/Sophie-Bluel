@@ -52,7 +52,6 @@ const categoryDisplay = async () => {
     const objetsFiltre = categoryId.filter((categoryId) => {
       return categoryId.category.id === 1;
     });
-   
 
     // });
     const gallery = document.querySelector(".gallery");
@@ -73,6 +72,7 @@ const categoryDisplay = async () => {
 
       gallery.appendChild(element);
     });
+    console.table(objetsFiltre);
   });
 
   //ajout du bouton Appartements
