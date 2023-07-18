@@ -110,8 +110,26 @@ let a = document.querySelector("#lost");
 a.onclick = () => {
   return confirm("Mot de passe Oublié");
 };
-
-
-
+   const urlLogin="http://localhost:5678/api/users/login";
+   const init2 = {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+    },
+  };
+   //fonction asynchrone formulant une requète a l' API pour le login
+   
+        // utilisation des paramètres "resolve ,reject" confirmant le bon chemin.
+        async function callLogin() {
+          return new Promise((resolve, reject) => {
+            fetch(urlLogin, init2).then((response) => {
+              if (response.ok) {
+                resolve(response.json());
+              } else {
+                reject(new Error("Impossible de contacter le serveur"));
+              }
+            });
+          });
+        };
 
 
