@@ -52,12 +52,7 @@ const categoryDisplay = async () => {
     const objetsFiltre = categoryId.filter((categoryId) => {
       return categoryId.category.id === 1;
     });
-    // objetsFiltre.src = imageData.imageUrl;
-    // objetsFiltre.dataset.categoryId = imageData.categoryId;
-    // objetsFiltre.textContent = imageData.title;
-    //   document.querySelector(".gallery").innerHTML = objetsFiltre;
-    //   console.table(objetsFiltre);
-    //   //genererFilter();
+   
 
     // });
     const gallery = document.querySelector(".gallery");
