@@ -91,13 +91,12 @@ a.onclick = () => {
 ////////////////////////////////////////////////
 //             code de connection
 ///////////////////////////////////////////////
-// Mise à jour de la fonction callLogin() pour utiliser la méthode POST
-//+ corps de la requête +stockage du token
-// Définition de l'URL de l'API pour la connexion
 const urlLogin = "http://localhost:5678/api/users/login";
 
-// Fonction pour effectuer la requête POST de connexion
-async function callLogin(email, password) {
+// Fonction pour effectuer la requête POST et récupérer le token
+async function getLoginToken(email, password) {
+  const body = JSON.stringify({ email, password });
+
   try {
     const response = await fetch(urlLogin, {
       method: "POST",
@@ -105,37 +104,48 @@ async function callLogin(email, password) {
         "Content-Type": "application/json",
         Accept: "application/json",
       },
-      body: JSON.stringify({ email: email, password: password }),
+      body: body,
     });
-
-    if (response.ok) {
-      const data = await response.json();
-      const token = data.token; // Récupération du token depuis les données de la réponse
-      // vérif du token
-      console.log(token);
-    } else {
-      throw new Error("Impossible de contacter le serveur");
+    // j'utilise l'opérateur de négation logique " ! ",
+    //j'inverse donc le résultat de response.ok. me permettant
+    if (!response.ok) {
+      const errorResponse = await response.json();
+      throw new Error(errorResponse.message);
     }
+
+    const data = await response.json();
+    return data.token;
   } catch (error) {
-    console.error(error);
+    throw new Error("Impossible de contacter le serveur");
   }
 }
 
-// Récupération des champs d'entrée d'email et de mot de passe
-const emailInput = document.getElementById("email");
-const passwordInput = document.getElementById("password");
-
-// Récupération du bouton "Se connecter"
-const seConnecterButton = document.querySelector(".buttons button");
-
-// Ajout d'un gestionnaire d'événement au clic sur le bouton "Se connecter"
-seConnecterButton.addEventListener("click", async () => {
+//  récupération du token
+async function main() {
   try {
-    const email = emailInput.value;
-    const password = passwordInput.value;
-
-    await callLogin(email, password);
+    const email = "sophie.bluel@test.tld";
+    const password = "S0phie";
+    const token = await getLoginToken(email, password);
+    console.log("Token récupéré:", token);
   } catch (error) {
-    console.error(error);
+    console.error("Erreur lors de la récupération du token:", error.message);
   }
-});
+  // Fonction pour effectuer la connexion et rediriger vers la page1.html
+  async function connectAndRedirect() {
+    try {
+      const email = "sophie.bluel@test.tld";
+      const password = "S0phie";
+      const token = await getLoginToken(email, password);
+      console.log("Token récupéré:", token);
+
+      // Redirige vers la page1.html après la connexion réussie
+      window.location.href = "page1.html";
+    } catch (error) {
+      console.error("Erreur lors de la connexion:", error.message);
+    }
+  }
+
+  // Ajoutez un événement de clic au bouton "Se connecter"
+  seConnecter.addEventListener("click", connectAndRedirect);
+}
+main();

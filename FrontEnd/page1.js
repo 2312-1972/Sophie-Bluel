@@ -1,3 +1,7 @@
+// import {  callApi, ficheTravaux } from "./script.js";
+// callApi();
+// ficheTravaux();
+// console.log(ficheTravaux);
 //création d'une variable Url=adresse API utilisé
 const url = "http://localhost:5678/api/works";
 //création d'une variable init
@@ -31,13 +35,23 @@ async function callApi() {
 //     });
 //   });
 // }
+const header = document.querySelector("header");
+const logo =document.querySelector("#logo");
+logo
+const divBlackHeader = document.createElement("div")
+divBlackHeader.classList.add("blackheader");
+ header.appendChild(divBlackHeader);
+ divBlackHeader.appendChild(logo);
+ 
+
+
 function navHeader() {
   // création dynamique de la nav header +liens actifs//
   //lien projet
   const liProjets = document.querySelector("#projets");
   //création du lien vers la page projets
   const lienProjets = document.createElement("a");
-  lienProjets.href = "./index.html";
+  lienProjets.href = "./page1.html";
   lienProjets.innerText = "projets";
   document.querySelector("lienProjets");
   lienProjets.className = "liheader";
@@ -54,11 +68,11 @@ function navHeader() {
   liContact.appendChild(lienContact);
 
   //lien Login
-  const liLogin = document.querySelector("#login");
+  const liLogin = document.querySelector("#logout");
   //création du lien vers la page contact
   const lienLogin = document.createElement("a");
   lienLogin.href = "./login.html";
-  lienLogin.innerText = "login";
+  lienLogin.innerText = "logout";
   document.querySelector("lienLogin");
   lienLogin.className = "liheader";
   liLogin.appendChild(lienLogin);

@@ -5,8 +5,10 @@
 	<meta charset="UTF-8">
 	<title>Sophie Bluel - Architecte d'intérieur</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<script src="./script.js" defer></script>
-	<script src="./filter.js" defer></script> 
+	<!-- <script src="./script.js" defer></script> -->
+	<!-- <script src="./filter.js" defer></script>  -->
+	<script src="./page1.js" defer></script>
+	<!-- <script src="./login.js" defer></script> -->
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap"
@@ -16,17 +18,18 @@
 </head>
 
 <body>
+    
 	<header>
-
-		<h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
+       
+<div id="logo"><h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
 		<nav>
 			<ul>
-				<li id="projets"></li>
-				<li id="contacter"></li>
-				<li id="login"></li>
+				<li id="projets" ></li>
+                <li id="contacter"></li>
+                <li id="logout"></li>
 				<li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
 			</ul>
-		</nav>
+		</nav></div>
 	</header>
 	<main>
 		<section id="introduction">
@@ -46,8 +49,8 @@
 		</section>
 		<section id="portfolio">
 			<h2 id="h2Title">Mes Projets</h2>
-			<div class="gallery" id="gallery">
-			</div>
+            <div class="gallery" id="gallery">
+				</div>
 		</section>
 		<div class="filters"></div>
 		<div class="gallery"></div>
