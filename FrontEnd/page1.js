@@ -24,27 +24,16 @@ async function callApi() {
     });
   });
 }
-// export function  callApi() {
-//   return new Promise((resolve, reject) => {
-//     fetch(url, init).then((response) => {
-//       if (response.ok) {
-//         resolve(response.json());
-//       } else {
-//         reject(new Error("Impossible de contacter le serveur"));
-//       }
-//     });
-//   });
-// }
-const header = document.querySelector("header");
-const logo =document.querySelector("#logo");
-logo
+const body = document.querySelector("body");
+
+
+
+
 const divBlackHeader = document.createElement("div")
 divBlackHeader.classList.add("blackheader");
- header.appendChild(divBlackHeader);
- divBlackHeader.appendChild(logo);
+ body.appendChild(divBlackHeader);
+ //divBlackHeader.appendChild(logo);
  
-
-
 function navHeader() {
   // création dynamique de la nav header +liens actifs//
   //lien projet
