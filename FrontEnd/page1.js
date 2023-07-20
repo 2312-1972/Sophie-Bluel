@@ -24,18 +24,44 @@ async function callApi() {
     });
   });
 }
+
 const body = document.querySelector("body");
+const divBlackHeader = document.createElement("div");
 
-
-
-
-const divBlackHeader = document.createElement("div")
 divBlackHeader.classList.add("blackheader");
- body.appendChild(divBlackHeader);
- //divBlackHeader.appendChild(logo);
- 
+body.appendChild(divBlackHeader);
+const buttonBlackHeader = document.createElement("button");
+body.appendChild(buttonBlackHeader);
+buttonBlackHeader.classList.add("buttonBlackHeader");
+buttonBlackHeader.textContent = "publier les changements";
+
+const penBlackHeader = document.createElement("div");
+body.appendChild(penBlackHeader);
+penBlackHeader.textContent = "Mode édition";
+penBlackHeader.classList.add("penBlackHeader");
+
+const fontPenBlackHeader = document.querySelector("#fa");
+fontPenBlackHeader.classList.add("faPenBlackHeader");
+
+// button modale
+const aModale = document.createElement("a");
+console.log(aModale);
+aModale.classList.add("divmodale");
+aModale.href = "#";
+
+const faModale = document.querySelector("#modale");
+faModale.classList.add("faModale");
+
+const pModal = document.querySelector("#pmodale");
+pModal.classList.add("pmodale");
+pModal.textContent = "modifier";
+
+aModale.appendChild(pModal);
+aModale.appendChild(faModale);
+body.appendChild(aModale);
+
+// création dynamique de la nav header +liens actifs//
 function navHeader() {
-  // création dynamique de la nav header +liens actifs//
   //lien projet
   const liProjets = document.querySelector("#projets");
   //création du lien vers la page projets
@@ -60,13 +86,14 @@ function navHeader() {
   const liLogin = document.querySelector("#logout");
   //création du lien vers la page contact
   const lienLogin = document.createElement("a");
-  lienLogin.href = "./login.html";
+  lienLogin.href = "./index.html";
   lienLogin.innerText = "logout";
   document.querySelector("lienLogin");
   lienLogin.className = "liheader";
   liLogin.appendChild(lienLogin);
 }
 navHeader();
+
 // récupération de  la promesse couplé a await
 //permettant au reste du script de continuer à s'exécuter.
 const ficheTravaux = async () => {

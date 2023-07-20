@@ -182,11 +182,58 @@ nav li {
   margin: 0px;
   position: absolute;
   top: 0px;
+  justify-content: center;
+}
+.buttonBlackHeader {
+  min-width: 5rem;
+  height: 2rem;
+  border: none;
+  border-radius: 2rem;
+  font-family: "Syne";
+  background-color: white;
+  margin-left: 1rem;
+  margin-bottom: 2rem;
+  color: black;
+  display: flex;
+  align-items: center;
+  position: absolute;
+  top: 15px;
+  right: 600px;
+}
+.penBlackHeader {
+  position: absolute;
+  top: 24px;
+  right: 830px;
+  color: white;
+  font-family: "Syne";
+}
+.faPenBlackHeader {
+  position: absolute;
+  top: 30px;
+  right: 940px;
+  z-index: 3;
+}
+.faModale {
+  position: absolute;
+  top: 650px;
+  right: 570px;
 }
 
+.pmodale {
+  font-size: 1em;
+  font-family: "Syne";
+  position: absolute;
+  color: black;
+  right: 500px;
+  top: 647px;
+}
+.divmodale {
+  text-decoration: none;
+}
 .h1 {
   width: 100%;
 }
+
 .liheader {
   padding: 0 10px;
   font-size: 2em;
