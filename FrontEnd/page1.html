@@ -7,7 +7,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<!-- <script src="./script.js" defer></script> -->
 	<!-- <script src="./filter.js" defer></script>  -->
-	<script src="./page1.js" defer></script>
+	<script src="./pageModale.js" defer></script>
 	<!-- <script src="./login.js" defer></script> -->
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -51,10 +51,22 @@
 		</section>
 		<section id="portfolio">
 			<h2 id="h2Title">Mes Projets </h2>
-		
-			<i id="modale" class="fa-regular fa-pen-to-square fa-lg"></i>
+
+			<i id="imodale" class="fa-regular fa-pen-to-square fa-lg"></i>
 			<p id="pmodale"></p>
-		
+			
+			<aside id="modale" class="modale" aria-hidden="true" role="dialog" aria-labelledby="titlemodale">
+				<div id="modale-wrapper"  class="modale-wrapper">
+					<h2 id="titlemodale" class="h2modale">Galerie photo</h2>
+					<div id="modaleGalerie" class="modaleGalerie">
+						 <i id="trashIcon" ></i> 
+						<!-- <img src="./assets/images/abajour-tahina.png" alt="abajour-tahina.png"> -->
+					</div>
+
+
+				</div>
+
+			</aside>
 			<div class="gallery" id="gallery">
 			</div>
 		</section>

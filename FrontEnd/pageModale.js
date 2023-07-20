@@ -1,8 +1,3 @@
-// import {  callApi, ficheTravaux } from "./script.js";
-// callApi();
-// ficheTravaux();
-// console.log(ficheTravaux);
-//création d'une variable Url=adresse API utilisé
 const url = "http://localhost:5678/api/works";
 //création d'une variable init
 const init = {
@@ -45,11 +40,10 @@ fontPenBlackHeader.classList.add("faPenBlackHeader");
 
 // button modale
 const aModale = document.createElement("a");
-console.log(aModale);
 aModale.classList.add("divmodale");
-aModale.href = "#";
+aModale.href = "#modale";
 
-const faModale = document.querySelector("#modale");
+const faModale = document.querySelector("#imodale");
 faModale.classList.add("faModale");
 
 const pModal = document.querySelector("#pmodale");
@@ -118,4 +112,51 @@ const ficheTravaux = async () => {
 };
 //appel de la variable pour effet
 ficheTravaux();
-//export function ficheTravaux();
+
+/////////////////////////////////////////////
+//     création de la galerie modale-wrapper
+////////////////////////////////////////////
+const gallerieModale = async () => {
+  const ficheGalerie = await callApi();
+  const galleryModale = document.querySelector("#modaleGalerie");
+  ficheGalerie.map((imageData) => {
+    const figure = document.createElement("projets");
+    const img = document.createElement("img");
+    img.src = imageData.imageUrl;
+    img.alt = "#";
+    // adaptation de la taille de l'image pour la modale
+    img.style.width = "77px";
+    img.style.height = "102px";
+    // Ajout de l'attribut data-category-id
+    img.dataset.categoryId = imageData.categoryId;
+    const figcaption = document.createElement("figcaption");
+    figcaption.textContent = "éditer";
+    const trashIcon = document.querySelector("#trashIcon");
+    trashIcon.style.className = "fa-solid fa-trash-can fa-xs";
+    //trashIcon.style.classList.add("trashIcon");
+    trashIcon.style.color = "black";
+
+
+
+    //affiliation des éléments crée sur le DOM
+    figure.appendChild(img);
+    figure.appendChild(figcaption);
+    galleryModale.appendChild(figure);
+    figure.appendChild(trashIcon);
+    
+    console.log(trashIcon);
+  });
+};
+const modaleWrapper = document.querySelector("#modale-wrapper");
+const borderModale = document.createElement("p");
+borderModale.classList.add("borderModale");
+const buttonModale = document.createElement("button");
+buttonModale.textContent="Ajouter une photo";
+buttonModale.classList.add("buttonModale");
+const SuppModale = document.createElement("p");
+SuppModale.textContent="Supprimer la galerie";
+SuppModale.classList.add("SuppModale");
+modaleWrapper.appendChild(borderModale);
+modaleWrapper.appendChild(buttonModale);
+modaleWrapper.appendChild(SuppModale);
+gallerieModale();
