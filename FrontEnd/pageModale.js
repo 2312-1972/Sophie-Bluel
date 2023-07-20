@@ -38,7 +38,7 @@ penBlackHeader.classList.add("penBlackHeader");
 const fontPenBlackHeader = document.querySelector("#fa");
 fontPenBlackHeader.classList.add("faPenBlackHeader");
 
-// button modale
+// button accès à la  modale
 const aModale = document.createElement("a");
 aModale.classList.add("divmodale");
 aModale.href = "#modale";
@@ -131,6 +131,7 @@ const gallerieModale = async () => {
     img.dataset.categoryId = imageData.categoryId;
     const figcaption = document.createElement("figcaption");
     figcaption.textContent = "éditer";
+    figcaption.href="#";
     const trashIcon = document.querySelector("#trashIcon");
     trashIcon.style.className = "fa-solid fa-trash-can fa-xs";
     //trashIcon.style.classList.add("trashIcon");
@@ -147,16 +148,25 @@ const gallerieModale = async () => {
     console.log(trashIcon);
   });
 };
+//récupéartion de modale wrapper pour affiliation
 const modaleWrapper = document.querySelector("#modale-wrapper");
+//création de la bordure
 const borderModale = document.createElement("p");
 borderModale.classList.add("borderModale");
+//création du bouton
 const buttonModale = document.createElement("button");
 buttonModale.textContent="Ajouter une photo";
 buttonModale.classList.add("buttonModale");
+//création supp de la galerie 
 const SuppModale = document.createElement("p");
 SuppModale.textContent="Supprimer la galerie";
 SuppModale.classList.add("SuppModale");
+//création escape modale
+const escapeModale = document.querySelector("#escapeModale");
+escapeModale.href="./page1.html";
 modaleWrapper.appendChild(borderModale);
 modaleWrapper.appendChild(buttonModale);
 modaleWrapper.appendChild(SuppModale);
+
+
 gallerieModale();

@@ -266,20 +266,37 @@ nav li {
   position: absolute;
   top: 50px;
 }
- .borderModale{
-  border:1px solid #b3b3b3;
+.borderModale {
+  border: 1px solid #b3b3b3;
   width: 420px;
-  margin-top: 40px;
- }
+  margin-top: 30px;
+}
 .buttonModale {
   width: 236px;
   height: 36px;
   margin-top: 40px;
 }
-.SuppModale{
+.SuppModale {
   font-size: 0.8em;
   font-family: "Syne";
   color: red;
+}
+.escapeModale{
+  font-family: "Syne";
+  font-weight:700;
+  position: absolute;
+ right: 520px;
+ width: 24px;
+ height: 24px;
+ text-align: center;
+ margin:5px;
+font-weight: 300;
+font-size: 1em;
+text-decoration: none;
+
+}
+.escapeModale:hover{
+  scale: 1.15;
 }
 .pmodale {
   font-size: 1em;
