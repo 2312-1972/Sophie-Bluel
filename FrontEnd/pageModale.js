@@ -108,34 +108,54 @@ const ficheTravaux = async () => {
 ficheTravaux();
 
 /////////////////////////////////////////////
-//     création de la galerie modale-wrapper
+//     création de la galerie modal
 ////////////////////////////////////////////
+// Fonction pour afficher la galerie modale
 const gallerieModale = async () => {
   const ficheGalerie = await callApi();
   const galleryModale = document.querySelector("#modaleGalerie");
+  
+  // Création des éléments pour chaque projet dans la galerie modale
   ficheGalerie.map((imageData) => {
-    const figure = document.createElement("projets");
+    const figure = document.createElement("figure");
     const img = document.createElement("img");
     img.src = imageData.imageUrl;
     img.alt = "#";
-    // adaptation de la taille de l'image pour la modale
     img.style.width = "77px";
     img.style.height = "102px";
     // Ajout de l'attribut data-category-id
     img.dataset.categoryId = imageData.categoryId;
-    const figcaption = document.createElement("figcaption");
-    figcaption.textContent = "éditer";
-    figcaption.href = "#";
-    const trashIcon = document.querySelector("#trashIcon");
-    trashIcon.style.className = "fa-solid fa-trash-can fa-xs";
-    //trashIcon.style.classList.add("trashIcon");
-    trashIcon.style.color = "black";
+    
+   // Création de l'icône "fa-arrows-up-down-left-right arrows-icon"
+   const arrowsIcon = document.createElement("i");
+   arrowsIcon.classList.add("fa-solid", "fa-arrows-up-down-left-right", "fa-xs", "arrows-icon");
+   arrowsIcon.style.position = "absolute";
+   arrowsIcon.style.top = "10px";
+   arrowsIcon.style.right = "4px";
+   arrowsIcon.style.color = "black";
+   arrowsIcon.style.pointerEvents = "none"; // Empêcher l'icône d'être cliquable
 
-    //affiliation des éléments crée sur le DOM
+   // Création de l'icône "fa-trash-can" pour la suppression
+   const deleteIcon = document.createElement("i");
+   deleteIcon.classList.add("fa-solid", "fa-trash-can", "fa-xs", "trash-icon");
+   deleteIcon.style.position = "absolute";
+   deleteIcon.style.top = "10px";
+   deleteIcon.style.right = "20px";
+   deleteIcon.style.color = "black";
+   deleteIcon.style.cursor = "pointer";
+    // Ajout de l'événement de clic pour la suppression du projet
+    deleteIcon.addEventListener("click", () => {
+      // Appeler la fonction pour supprimer le projet avec l'ID spécifié
+      deleteProject(imageData.id);
+    });
+    
+    // Affiliation des éléments créés sur le DOM
     figure.appendChild(img);
-    figure.appendChild(figcaption);
+    figure.appendChild(deleteIcon);
+    figure.appendChild(arrowsIcon);
+    
+    
     galleryModale.appendChild(figure);
-    img.appendChild(trashIcon);
   });
 };
 //récupéartion de modale wrapper pour affiliation
@@ -178,3 +198,33 @@ window.addEventListener("click", (event) => {
     closeModale();
   }
 });
+// Fonction pour supprimer un projet
+async function deleteProject(projectId) {
+  const apiUrl = `http://localhost:5678/api/works/${projectId}`;
+
+  try {
+    const response = await fetch(apiUrl, {
+      method: "DELETE",
+      headers: {
+        Accept: "application/json",
+      },
+    });
+
+    if (response.ok) {
+      // Attendre que la suppression soit terminée
+      await response.json();
+
+      // Recharger la galerie modale mise à jour
+      const galleryModale = document.querySelector("#modaleGalerie");
+      galleryModale.innerHTML = ""; // Effacer le contenu actuel de la galerie modale
+      gallerieModale(); // Recharger la galerie modale mise à jour
+    } else {
+      // Gérer les erreurs en cas d'échec de la suppression
+      console.error("Erreur lors de la suppression du projet.");
+    }
+  } catch (error) {
+    console.error("Erreur lors de la suppression du projet:", error);
+  }
+};
+
+deleteProject();

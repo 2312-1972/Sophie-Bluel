@@ -266,10 +266,24 @@ nav li {
   gap: 20px;
   padding-top: 20px;
 }
-.trashIcon {
-  position: absolute;
-  top: 50px;
+/* Styles pour la galerie modale */
+#modaleGalerie {
+  display: flex;
+  flex-wrap: wrap;
 }
+
+/* Styles pour chaque projet dans la galerie modale */
+#modaleGalerie figure {
+  position: relative;
+  margin: 8px;
+}
+
+/* Styles pour les images dans la galerie modale */
+#modaleGalerie img {
+  width: 77px;
+  height: 102px;
+}
+
 .borderModale {
   border: 1px solid #b3b3b3;
   width: 420px;
