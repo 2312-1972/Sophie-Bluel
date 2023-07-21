@@ -114,7 +114,7 @@ ficheTravaux();
 const gallerieModale = async () => {
   const ficheGalerie = await callApi();
   const galleryModale = document.querySelector("#modaleGalerie");
-  
+
   // Création des éléments pour chaque projet dans la galerie modale
   ficheGalerie.map((imageData) => {
     const figure = document.createElement("figure");
@@ -125,36 +125,57 @@ const gallerieModale = async () => {
     img.style.height = "102px";
     // Ajout de l'attribut data-category-id
     img.dataset.categoryId = imageData.categoryId;
-    
-   // Création de l'icône "fa-arrows-up-down-left-right arrows-icon"
-   const arrowsIcon = document.createElement("i");
-   arrowsIcon.classList.add("fa-solid", "fa-arrows-up-down-left-right", "fa-xs", "arrows-icon");
-   arrowsIcon.style.position = "absolute";
-   arrowsIcon.style.top = "10px";
-   arrowsIcon.style.right = "4px";
-   arrowsIcon.style.color = "black";
-   arrowsIcon.style.pointerEvents = "none"; // Empêcher l'icône d'être cliquable
 
-   // Création de l'icône "fa-trash-can" pour la suppression
-   const deleteIcon = document.createElement("i");
-   deleteIcon.classList.add("fa-solid", "fa-trash-can", "fa-xs", "trash-icon");
-   deleteIcon.style.position = "absolute";
-   deleteIcon.style.top = "10px";
-   deleteIcon.style.right = "20px";
-   deleteIcon.style.color = "black";
-   deleteIcon.style.cursor = "pointer";
+    const divArrows = document.createElement("div");
+    divArrows.style.width = "15px";
+    divArrows.style.height = "15px";
+    divArrows.style.top = "10px";
+    divArrows.style.right = "26px";
+    divArrows.style.backgroundColor = "black";
+    divArrows.style.position = "absolute";
+
+    // Création de l'icône "fa-arrows-up-down-left-right arrows-icon"
+    const arrowsIcon = document.createElement("i");
+    arrowsIcon.classList.add(
+      "fa-solid",
+      "fa-arrows-up-down-left-right",
+      "fa-xs",
+      "arrows-icon"
+    );
+    arrowsIcon.style.position = "absolute";
+    arrowsIcon.style.top = "8px";
+    arrowsIcon.style.left = "2px";
+    arrowsIcon.style.color = "white";
+    arrowsIcon.style.pointerEvents = "none"; // Empêcher l'icône d'être cliquable
+    // Création de l'icône "fa-trash-can" pour la suppression
+    const divTrash = document.createElement("div");
+    divTrash.style.width = "15px";
+    divTrash.style.height = "15px";
+    divTrash.style.top = "10px";
+    divTrash.style.right = "8px";
+    divTrash.style.backgroundColor = "black";
+    divTrash.style.position = "absolute";
+
+    const deleteIcon = document.createElement("i");
+    deleteIcon.classList.add("fa-solid", "fa-trash-can", "fa-xs", "trash-icon");
+    deleteIcon.style.position = "absolute";
+    deleteIcon.style.top = "8px";
+    deleteIcon.style.right = "3px";
+    deleteIcon.style.color = "white";
+    deleteIcon.style.cursor = "pointer";
     // Ajout de l'événement de clic pour la suppression du projet
     deleteIcon.addEventListener("click", () => {
       // Appeler la fonction pour supprimer le projet avec l'ID spécifié
       deleteProject(imageData.id);
     });
-    
+
     // Affiliation des éléments créés sur le DOM
     figure.appendChild(img);
-    figure.appendChild(deleteIcon);
-    figure.appendChild(arrowsIcon);
-    
-    
+    figure.appendChild(divTrash);
+    figure.appendChild(divArrows);
+
+    divTrash.appendChild(deleteIcon);
+    divArrows.appendChild(arrowsIcon);
     galleryModale.appendChild(figure);
   });
 };
@@ -200,7 +221,7 @@ window.addEventListener("click", (event) => {
 });
 // Fonction pour supprimer un projet
 async function deleteProject(projectId) {
-  const apiUrl = `http://localhost:5678/api/works/${projectId}`;
+  const apiUrl = `http://localhost:5678/api/works/1`;
 
   try {
     const response = await fetch(apiUrl, {
@@ -225,6 +246,6 @@ async function deleteProject(projectId) {
   } catch (error) {
     console.error("Erreur lors de la suppression du projet:", error);
   }
-};
+}
 
 deleteProject();
