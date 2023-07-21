@@ -38,22 +38,6 @@ penBlackHeader.classList.add("penBlackHeader");
 const fontPenBlackHeader = document.querySelector("#fa");
 fontPenBlackHeader.classList.add("faPenBlackHeader");
 
-// button accès à la  modale
-const aModale = document.createElement("a");
-aModale.classList.add("divmodale");
-aModale.href = "#modale";
-
-const faModale = document.querySelector("#imodale");
-faModale.classList.add("faModale");
-
-const pModal = document.querySelector("#pmodale");
-pModal.classList.add("pmodale");
-pModal.textContent = "modifier";
-
-aModale.appendChild(pModal);
-aModale.appendChild(faModale);
-body.appendChild(aModale);
-
 // création dynamique de la nav header +liens actifs//
 function navHeader() {
   //lien projet
@@ -87,6 +71,16 @@ function navHeader() {
   liLogin.appendChild(lienLogin);
 }
 navHeader();
+
+// button accès à la  modale
+//const divLienModale = document
+const accesModale = document.createElement("a");
+body.appendChild(accesModale);
+accesModale.classList.add("divmodale");
+accesModale.textContent = "modifier";
+accesModale.href = "#modale";
+const faModale = document.querySelector("#imodale");
+faModale.classList.add("faModale");
 
 // récupération de  la promesse couplé a await
 //permettant au reste du script de continuer à s'exécuter.
@@ -131,21 +125,17 @@ const gallerieModale = async () => {
     img.dataset.categoryId = imageData.categoryId;
     const figcaption = document.createElement("figcaption");
     figcaption.textContent = "éditer";
-    figcaption.href="#";
+    figcaption.href = "#";
     const trashIcon = document.querySelector("#trashIcon");
     trashIcon.style.className = "fa-solid fa-trash-can fa-xs";
     //trashIcon.style.classList.add("trashIcon");
     trashIcon.style.color = "black";
 
-
-
     //affiliation des éléments crée sur le DOM
     figure.appendChild(img);
     figure.appendChild(figcaption);
     galleryModale.appendChild(figure);
-    figure.appendChild(trashIcon);
-    
-    console.log(trashIcon);
+    img.appendChild(trashIcon);
   });
 };
 //récupéartion de modale wrapper pour affiliation
@@ -155,18 +145,36 @@ const borderModale = document.createElement("p");
 borderModale.classList.add("borderModale");
 //création du bouton
 const buttonModale = document.createElement("button");
-buttonModale.textContent="Ajouter une photo";
+buttonModale.textContent = "Ajouter une photo";
 buttonModale.classList.add("buttonModale");
-//création supp de la galerie 
+//création supp de la galerie
 const SuppModale = document.createElement("p");
-SuppModale.textContent="Supprimer la galerie";
+SuppModale.textContent = "Supprimer la galerie";
 SuppModale.classList.add("SuppModale");
 //création escape modale
 const escapeModale = document.querySelector("#escapeModale");
-escapeModale.href="./page1.html";
+escapeModale.href = "./page1.html";
 modaleWrapper.appendChild(borderModale);
 modaleWrapper.appendChild(buttonModale);
 modaleWrapper.appendChild(SuppModale);
 
-
 gallerieModale();
+const modal = document.querySelector("#modale");
+function openModale() {
+  modal.style.display = "flex";
+}
+function closeModale() {
+  modal.style.display = "none";
+}
+// Écouteur d'événement pour le bouton d'ouverture
+accesModale.addEventListener("click", openModale);
+
+// Écouteur d'événement pour le bouton de fermeture
+escapeModale.addEventListener("click", closeModale);
+
+// Écouteur d'événement pour la fermeture lorsque l'utilisateur clique en dehors de la boîte modale
+window.addEventListener("click", (event) => {
+  if (event.target === modal) {
+    closeModale();
+  }
+});
