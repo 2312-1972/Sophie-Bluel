@@ -227,6 +227,7 @@ nav li {
   background-color: white;
   border-radius: 10px;
   background-color: rgba(0, 0, 0, 0.08);
+  z-index: 2;
 }
 .modale-wrapper {
   display: flex;
@@ -240,6 +241,7 @@ nav li {
   max-height: calc(100vh - 20px);
   overflow: auto;
   align-items: center;
+  z-index: 2;
 }
 
 .h2modale {
