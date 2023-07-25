@@ -34,41 +34,20 @@ const penBlackHeader = document.createElement("div");
 body.appendChild(penBlackHeader);
 penBlackHeader.textContent = "Mode édition";
 penBlackHeader.classList.add("penBlackHeader");
-
 const fontPenBlackHeader = document.querySelector("#fa");
 fontPenBlackHeader.classList.add("faPenBlackHeader");
 
 // création dynamique de la nav header +liens actifs//
 function navHeader() {
-  //lien projet
-  const liProjets = document.querySelector("#projets");
-  //création du lien vers la page projets
-  const lienProjets = document.createElement("a");
-  lienProjets.href = "./page1.html";
-  lienProjets.innerText = "projets";
-  document.querySelector("lienProjets");
-  lienProjets.className = "liheader";
-  liProjets.appendChild(lienProjets);
-
-  //lien contact
-  const liContact = document.querySelector("#contacter");
-  //création du lien vers la page contact
-  const lienContact = document.createElement("a");
-  lienContact.href = "#";
-  lienContact.innerText = "contact";
-  document.querySelector("lienContact");
-  lienContact.className = "liheader";
-  liContact.appendChild(lienContact);
-
   //lien Login
-  const liLogin = document.querySelector("#logout");
+  const logOut = document.querySelector("#logout");
   //création du lien vers la page contact
   const lienLogin = document.createElement("a");
   lienLogin.href = "./index.html";
   lienLogin.innerText = "logout";
   document.querySelector("lienLogin");
   lienLogin.className = "liheader";
-  liLogin.appendChild(lienLogin);
+  logOut.appendChild(lienLogin);
 }
 navHeader();
 
@@ -188,6 +167,7 @@ borderModale.classList.add("borderModale");
 const buttonModale = document.createElement("button");
 buttonModale.textContent = "Ajouter une photo";
 buttonModale.classList.add("buttonModale");
+
 //création supp de la galerie
 const SuppModale = document.createElement("p");
 SuppModale.textContent = "Supprimer la galerie";
@@ -220,32 +200,99 @@ window.addEventListener("click", (event) => {
   }
 });
 // Fonction pour supprimer un projet
+// async function deleteProject(projectId) {
+//   const apiUrl = `http://localhost:5678/api/works/${projectId}`;
+
+//   try {
+//     const token = localStorage.getItem("accessToken"); // Récupérer le token depuis le localStorage
+
+//     if (!token) {
+//       console.error("Token d'accès introuvable.");
+//       return;
+//     }
+
+//     const response = await fetch(apiUrl, {
+//       method: "DELETE",
+//       headers: {
+//         Accept: "application/json",
+//         Authorization: `Bearer ${token}`, // Ajouter le token d'accès dans l'en-tête de la requête
+//       },
+//     });
+
+//     if (response.ok) {
+//       // Attendre que la suppression soit terminée
+//       await response.json();
+
+//       // Recharger la galerie modale mise à jour
+//       const galleryModale = document.querySelector("#modaleGalerie");
+//       galleryModale.innerHTML = ""; // Effacer le contenu actuel de la galerie modale
+//       gallerieModale(); // Recharger la galerie modale mise à jour
+//     } else {
+//       // Gérer les erreurs en cas d'échec de la suppression
+//       console.error("Erreur lors de la suppression du projet.");
+//     }
+//   } catch (error) {
+//     console.error("Erreur lors de la suppression du projet:", error);
+//   }
+// }
+// // Fonction pour supprimer un projet en utilisant l'API DELETE
 async function deleteProject(projectId) {
-  const apiUrl = `http://localhost:5678/api/works/1`;
+   // Demander une confirmation à l'utilisateur avant de supprimer le projet
+   const confirmation = window.confirm("Voulez-vous vraiment supprimer ce projet ?");
 
-  try {
-    const response = await fetch(apiUrl, {
-      method: "DELETE",
-      headers: {
-        Accept: "application/json",
-      },
-    });
+  if (confirmation) {
+    const apiUrl = `http://localhost:5678/api/works/${projectId}`;
 
-    if (response.ok) {
-      // Attendre que la suppression soit terminée
-      await response.json();
+    try {
+      const response = await fetch(apiUrl, {
+        method: "DELETE",
+        headers: {
+          Accept: "application/json",
+        },
+      });
 
-      // Recharger la galerie modale mise à jour
-      const galleryModale = document.querySelector("#modaleGalerie");
-      galleryModale.innerHTML = ""; // Effacer le contenu actuel de la galerie modale
-      gallerieModale(); // Recharger la galerie modale mise à jour
-    } else {
-      // Gérer les erreurs en cas d'échec de la suppression
-      console.error("Erreur lors de la suppression du projet.");
+      if (response.ok) {
+      //  Attendre que la suppression soit terminée
+        await response.json();
+
+      //  Recharger la galerie modale mise à jour
+        const galleryModale = document.querySelector("#modaleGalerie");
+        galleryModale.innerHTML = ""; //Effacer le contenu actuel de la galerie modale
+        gallerieModale(); //Recharger la galerie modale mise à jour
+      } else {
+      //  Gérer les erreurs en cas d'échec de la suppression
+        console.error("Erreur lors de la suppression du projet.");
+      }
+    } catch (error) {
+      console.error("Erreur lors de la suppression du projet:", error);
     }
-  } catch (error) {
-    console.error("Erreur lors de la suppression du projet:", error);
   }
 }
 
 deleteProject();
+ const modalePush = document.querySelector("#modale-ajout");
+ const escapeModale2 = document.querySelector("#escapeModale2");
+ escapeModale2.href="./page1.html";
+
+
+
+
+// Sélectionner le bouton "ajouter une photo" par son sélecteur dans l'élément ayant l'ID "modale-wrapper"
+const boutonAjouterPhoto = document.querySelector('#modale-wrapper button');
+
+// Fonction qui s'exécute lorsque le bouton est cliqué
+function onClickAjouterPhoto() {
+  
+  const modal = document.getElementById('modale'); 
+  const modalPush = document.getElementById('modale-push'); 
+
+  if (modal && modalPush) {
+    modal.style.display = 'none'; // Cacher la modal "modale"
+    modalPush.style.display = 'block'; // Afficher la modal "modale-push"
+  } else {
+    console.error("Les modals n'ont pas été trouvées.");
+  }
+}
+
+// Ajouter un eventlistener pour écouter le clic sur le bouton "ajouter une photo"
+boutonAjouterPhoto.addEventListener('click', onClickAjouterPhoto);

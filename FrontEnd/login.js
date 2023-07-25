@@ -26,6 +26,7 @@ async function getLoginToken(email, password) {
 }
 
 // Fonction pour effectuer la connexion et rediriger vers la page1.html
+// Fonction pour effectuer la connexion et rediriger vers la page1.html
 async function connectAndRedirect() {
   try {
     const emailInput = document.getElementById("email");
@@ -38,6 +39,9 @@ async function connectAndRedirect() {
 
     // Vérifier si le token a été récupéré avec succès
     if (token) {
+      // Stocker le token dans le localStorage
+      localStorage.setItem("accessToken", token);
+
       console.log("Connexion réussie !");
       window.location.href = "page1.html"; // Redirige vers la page1.html après la connexion réussie
     } else {
@@ -47,7 +51,7 @@ async function connectAndRedirect() {
     console.error("Erreur lors de la connexion:", error.message);
   }
 }
-
+connectAndRedirect()
 // Fonction pour ajouter la barre de navigation
 function navHeader() {
   // Création dynamique de la nav header + liens actifs
