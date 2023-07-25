@@ -66,18 +66,28 @@
 			<!-- modal accès ajout projet -->
 			<aside id="modale-push" class="modale-push" aria-hidden="true" role="dialog" aria-labelledby="titlemodale"
 				style="display:none">
-             <!-- modal ajour de la photo -->
+				<!-- modal ajout de la photo -->
 				<div id="modale-ajout" class="modale-ajout">
-					<div class="modaleAjoutHeader"><a id="modale-fa-arrow" href="./page1.html"><i class="fa-solid fa-arrow-left" style="color: #000000;"></i></a>
-					<a id="escapeModale2"class="escapeModale2">X</a></div>
+					<div class="modaleAjoutHeader"><a id="modale-fa-arrow" href="./page1.html"><i
+								class="fa-solid fa-arrow-left" style="color: #000000;"></i></a>
+						<a id="escapeModale2" class="escapeModale2">X</a>
+					</div>
 					<h2 id="titlemodale" class="h2modale">Ajout photo</h2>
-					<div id="ajout-photo" class="ajout-photo"></div>
-					<div>
-						<label for="title" class="label">Titre</label>
-		    				<input type="text" class="labelModalePush" id="title" name="title">
-							<label for="title" class="label">Catégorie</label>
-		    				<input type="text" class="labelModalePush" id="title" name="title">
-					</div>. 
+					<div id="ajout-photo" class="ajout-photo">
+						<div class="image-container">
+							<img id="imageSelectionnee" src="" alt="Image sélectionnée" />
+						</div>
+						<input type="file" id="champImage" name="image" accept="image/*" style="display:none;">
+
+						<i id="faMountain" class="fa-regular fa-image " style="color: #dedcdc;"></i>
+					</div>
+					<div class="labelAjoutPhoto">
+						<label  for="title" class="label">Titre</label>
+						<input  type="text" class="labelModalePush" id="title" name="title">
+						<label  for="title" class="label">Catégorie</label>
+						<select id="category" name="category" class="labelModalePush"></select>
+
+					</div>.
 
 				</div>
 			</aside>

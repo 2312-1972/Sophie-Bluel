@@ -232,8 +232,8 @@ nav li {
 
 .modale-push {
   display: none; /* Masque la modale par défaut */
-  justify-content: center; 
-  align-items: center; 
+  justify-content: center;
+  align-items: center;
   position: fixed;
   top: 0;
   left: 0;
@@ -273,14 +273,12 @@ nav li {
   width: 530px;
   height: 570px;
 }
-.modaleAjoutHeader{
+.modaleAjoutHeader {
   display: flex;
- justify-content: space-between;
-  
+  justify-content: space-between;
 }
-.escapeModale2{
+.escapeModale2 {
   text-decoration: none;
-  
 }
 .h2modale {
   color: black;
@@ -303,6 +301,113 @@ nav li {
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   gap: 20px;
   padding-top: 20px;
+}
+.ajout-photo {
+  width: 420px;
+  height: 189px;
+  background: rgba(232, 241, 246, 1);
+  margin-left: 55px;
+}
+/* Styles pour l'image sélectionnée */
+.image-container {
+  width: 129px;
+  height: 169px;
+  margin: auto;
+  position: relative;
+  bottom: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Pour masquer toute partie de l'image dépassant de la div */
+  overflow: hidden;
+  z-index: 1;
+}
+
+.image-container img {
+  width: 100%;
+  height: 100%;
+  /* Ajuster la taille de l'image pour remplir complètement le conteneur */
+  object-fit: cover;
+}
+
+.labelAjoutPhoto {
+  display: flex;
+  flex-direction: column;
+  font-family: work sans;
+  font-size: 14px;
+  padding-left: 55px;
+  gap: 10px;
+  padding-top: 30px;
+  font-weight: 500;
+  line-height: 16px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+
+.labelModalePush {
+  box-shadow: 0px 4px 14px 0px rgba(0, 0, 0, 0.09);
+  border: none;
+  width: 420px;
+  height: 51px;
+  background: rgba(255, 255, 255, 1);
+  font-family: Work Sans;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 16px;
+  letter-spacing: 0em;
+  text-align: left;
+  padding-left: 10px;
+ 
+}
+.buttonAjouter {
+  width: 173px;
+  height: 36px;
+  border-radius: 50px;
+  position: absolute;
+  margin-left: 130px;
+  top: 230px;
+  border: none;
+  background-color: rgb(222, 220, 220);
+  color: rgb(4, 88, 157);
+  font-family: Work Sans;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 16px;
+  letter-spacing: 0em;
+  text-align: center;
+  z-index: 2;
+}
+.buttonValider {
+  width: 237px;
+  height: 36px;
+  border-radius: 50px;
+  margin-left: 105px;
+  margin-top: 90px;
+  border: none;
+  font-family: Syne;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 17px;
+  letter-spacing: 0em;
+  text-align: center;
+  background: rgba(167, 167, 167, 1);
+  color: rgba(255, 255, 255, 1);
+}
+.faMountain {
+  position: absolute;
+  top: 135px;
+  right: 250px;
+  width: 58px;
+  height: 58px;
+  font-size: 4em;
+}
+.infosPhoto {
+  font-family: Work Sans;
+  font-size: 10px;
+  font-weight: 400;
+  line-height: 12px;
+  letter-spacing: 0em;
+  text-align: center;
 }
 /* Styles pour la galerie modale */
 #modaleGalerie {
