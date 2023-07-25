@@ -199,7 +199,7 @@ window.addEventListener("click", (event) => {
     closeModale();
   }
 });
-// Fonction pour supprimer un projet
+// Fonction pour supprimer un projet avec confirmation
 async function deleteProject(projectId) {
   const apiUrl = `http://localhost:5678/api/works/${projectId}`;
 
@@ -211,31 +211,39 @@ async function deleteProject(projectId) {
       return;
     }
 
-    const response = await fetch(apiUrl, {
-      method: "DELETE",
-      headers: {
-        Accept: "application/json",
-        Authorization: `Bearer ${token}`, // Ajouter le token d'accès dans l'en-tête de la requête
-      },
-    });
+    // Afficher une boîte de dialogue de confirmation
+    const confirmation = window.confirm("Êtes-vous sûr de vouloir supprimer ce projet ?");
 
-    if (response.ok) {
-      //Attendre que la suppression soit terminée
-      await response.json();
+    if (confirmation) {
+      // Si l'utilisateur clique sur "OK" dans la boîte de dialogue de confirmation, effectuer la suppression
+      const response = await fetch(apiUrl, {
+        method: "DELETE",
+        headers: {
+          Accept: "application/json",
+          Authorization: `Bearer ${token}`, // Ajouter le token d'accès dans l'en-tête de la requête
+        },
+      });
 
-      //Recharger la galerie modale "mise à jour"
-      const galleryModale = document.querySelector("#modaleGalerie");
-      galleryModale.innerHTML = ""; //Effacer le contenu actuel de la galerie modale
-      gallerieModale(); //Recharger la galerie modale mise à jour
+      if (response.ok) {
+        //Attendre que la suppression soit terminée
+        await response.json();
+
+        //Recharger la galerie modale "mise à jour"
+        const galleryModale = document.querySelector("#modaleGalerie");
+        galleryModale.innerHTML = ""; //Effacer le contenu actuel de la galerie modale
+        gallerieModale(); //Recharger la galerie modale mise à jour
+      } else {
+        //Gérer les erreurs en cas d'échec de la suppression
+        console.error("Erreur lors de la suppression du projet.");
+      }
     } else {
-      //Gérer les erreurs en cas d'échec de la suppression
-      console.error("Erreur lors de la suppression du projet.");
+      // Si l'utilisateur clique sur "Annuler" dans la boîte de dialogue de confirmation, annuler la suppression
+      console.log("Suppression annulée.");
     }
   } catch (error) {
     console.error("Erreur lors de la suppression du projet:", error);
   }
 }
-
 // Sélection du bouton "ajouter une photo" par son sélecteur dans l'élément ayant l'ID "modale-wrapper"
 const boutonAjouterPhoto = document.querySelector("#modale-wrapper button");
 
