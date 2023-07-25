@@ -293,8 +293,6 @@ buttonValider.style.marginTop = "20px";
 buttonValider.textContent = "Valider";
 ajoutPhoto.appendChild(buttonValider);
 
-console.log(buttonValider);
-
 // Création de la div qui contiendra l'image sélectionnée
 const imageContainer = document.createElement("div");
 imageContainer.classList.add("image-container");
