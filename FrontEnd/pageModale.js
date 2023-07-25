@@ -212,7 +212,9 @@ async function deleteProject(projectId) {
     }
 
     // Afficher une boîte de dialogue de confirmation
-    const confirmation = window.confirm("Êtes-vous sûr de vouloir supprimer ce projet ?");
+    const confirmation = window.confirm(
+      "Êtes-vous sûr de vouloir supprimer ce projet ?"
+    );
 
     if (confirmation) {
       // Si l'utilisateur clique sur "OK" dans la boîte de dialogue de confirmation, effectuer la suppression
