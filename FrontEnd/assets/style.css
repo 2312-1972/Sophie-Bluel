@@ -271,7 +271,7 @@ nav li {
   overflow: auto;
   z-index: 3; /* La modale "modale-ajout" est au-dessus de "modale-push" */
   width: 530px;
-  height: 570px;
+  height: 580px;
 }
 .modaleAjoutHeader {
   display: flex;
@@ -294,14 +294,15 @@ nav li {
   color: black;
   z-index: -1;
 }
-.modaleGalerie {
+/* pas utile si l'on veut le meme design mais plus clair par contre 
+/* .modaleGalerie {
   padding-left: 40px;
   display: grid;
   grid-template-rows: 1fr 1fr 1fr;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   gap: 20px;
   padding-top: 20px;
-}
+} */
 .ajout-photo {
   width: 420px;
   height: 189px;
@@ -355,9 +356,6 @@ nav li {
   font-weight: 400;
   line-height: 16px;
   letter-spacing: 0em;
-  text-align: left;
-  padding-left: 10px;
- 
 }
 .buttonAjouter {
   width: 173px;
@@ -502,6 +500,17 @@ nav li {
 li:hover {
   color: #b1663c;
 }
+
+.lostMdp{
+  font-family: Work Sans;
+font-size: 14px;
+font-weight: 500;
+line-height: 16px;
+letter-spacing: 0em;
+text-align: left;
+color: black;
+
+}
 .navfooter {
   padding: 0 10px;
   font-size: 1.5em;
@@ -509,6 +518,17 @@ li:hover {
   vertical-align: baseline;
   text-decoration: none;
   color: black;
+}
+.lienLiFooter{
+  font-family: Work Sans;
+font-size: 14px;
+font-weight: 300;
+line-height: 16px;
+letter-spacing: 0em;
+text-align: left;
+text-decoration: none;
+color: rgba(0, 0, 0, 1);
+
 }
 .navfooter:hover {
   color: #b1663c;

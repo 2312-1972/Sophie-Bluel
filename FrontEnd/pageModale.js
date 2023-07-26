@@ -52,7 +52,7 @@ function navHeader() {
 navHeader();
 
 // button accès à la  modale
-//const divLienModale = document
+
 const accesModale = document.createElement("a");
 body.appendChild(accesModale);
 accesModale.classList.add("divmodale");
@@ -104,7 +104,8 @@ const gallerieModale = async () => {
     img.style.height = "102px";
     // Ajout de l'attribut data-category-id
     img.dataset.categoryId = imageData.categoryId;
-
+    const figcaption = document.createElement("figcaption");
+    figcaption.textContent = "éditer";
     const divArrows = document.createElement("div");
     divArrows.style.width = "15px";
     divArrows.style.height = "15px";
@@ -125,7 +126,7 @@ const gallerieModale = async () => {
     arrowsIcon.style.top = "8px";
     arrowsIcon.style.left = "2px";
     arrowsIcon.style.color = "white";
-    arrowsIcon.style.pointerEvents = "none"; // Empêcher l'icône d'être cliquable
+    arrowsIcon.style.pointerEvents = "none"; // Empêche l'icône d'être cliquable
     // Création de l'icône "fa-trash-can" pour la suppression
     const divTrash = document.createElement("div");
     divTrash.style.width = "15px";
@@ -144,7 +145,7 @@ const gallerieModale = async () => {
     deleteIcon.style.cursor = "pointer";
     // Ajout de l'événement de clic pour la suppression du projet
     deleteIcon.addEventListener("click", () => {
-      // Appeler la fonction pour supprimer le projet avec l'ID spécifié
+      // Appele la fonction pour supprimer le projet avec l'ID spécifié
       deleteProject(imageData.id);
     });
 
@@ -152,7 +153,7 @@ const gallerieModale = async () => {
     figure.appendChild(img);
     figure.appendChild(divTrash);
     figure.appendChild(divArrows);
-
+    figure.appendChild(figcaption);
     divTrash.appendChild(deleteIcon);
     divArrows.appendChild(arrowsIcon);
     galleryModale.appendChild(figure);
@@ -168,7 +169,7 @@ const buttonModale = document.createElement("button");
 buttonModale.textContent = "Ajouter une photo";
 buttonModale.classList.add("buttonModale");
 
-//création supp de la galerie
+//création supp de la galerie non actif !!
 const SuppModale = document.createElement("p");
 SuppModale.textContent = "Supprimer la galerie";
 SuppModale.classList.add("SuppModale");
@@ -199,43 +200,43 @@ window.addEventListener("click", (event) => {
     closeModale();
   }
 });
-// Fonction pour supprimer un projet avec confirmation
+// Fonction pour supprimer un projet avec confirmation avant delete complet!!
 async function deleteProject(projectId) {
   const apiUrl = `http://localhost:5678/api/works/${projectId}`;
 
   try {
-    const token = localStorage.getItem("accessToken"); // Récupérer le token depuis le localStorage
+    const token = localStorage.getItem("accessToken"); // Récupération du token depuis le localStorage
 
     if (!token) {
       console.error("Token d'accès introuvable.");
       return;
     }
 
-    // Afficher une boîte de dialogue de confirmation
+    // Affiche une boîte de dialogue de confirmation de delete
     const confirmation = window.confirm(
       "Êtes-vous sûr de vouloir supprimer ce projet ?"
     );
 
     if (confirmation) {
-      // Si l'utilisateur clique sur "OK" dans la boîte de dialogue de confirmation, effectuer la suppression
+      // Si l'utilisateur clique sur "OK" dans la boîte de dialogue de confirmation = suppression effectuer
       const response = await fetch(apiUrl, {
         method: "DELETE",
         headers: {
           Accept: "application/json",
-          Authorization: `Bearer ${token}`, // Ajouter le token d'accès dans l'en-tête de la requête
+          Authorization: `Bearer ${token}`, // Ajoute le token d'accès dans l'en-tête de la requête
         },
       });
 
       if (response.ok) {
-        //Attendre que la suppression soit terminée
+        //Attend que la suppression soit terminée
         await response.json();
 
-        //Recharger la galerie modale "mise à jour"
+        //Recharge la galerie modale "mise à jour"
         const galleryModale = document.querySelector("#modaleGalerie");
         galleryModale.innerHTML = ""; //Effacer le contenu actuel de la galerie modale
         gallerieModale(); //Recharger la galerie modale mise à jour
       } else {
-        //Gérer les erreurs en cas d'échec de la suppression
+        //Gére les erreurs en cas d'échec de la suppression
         console.error("Erreur lors de la suppression du projet.");
       }
     } else {
@@ -255,14 +256,14 @@ function onClickAjouterPhoto() {
   const modalPush = document.getElementById("modale-push");
 
   if (modal && modalPush) {
-    modal.style.display = "none"; // Cacher la modal "modale"
-    modalPush.style.display = "block"; // Afficher la modal "modale-push"
+    modal.style.display = "none"; // Cache la modal "modale"
+    modalPush.style.display = "block"; // Affiche la modal "modale-push"
   } else {
     console.error("Les modals n'ont pas été trouvées.");
   }
 }
 
-// Ajouter un eventlistener pour écouter le clic sur le bouton "ajouter une photo"
+// Ajoute un eventlistener pour écouter le clic sur le bouton "ajouter une photo"
 boutonAjouterPhoto.addEventListener("click", onClickAjouterPhoto);
 
 // création modal ajout photo
@@ -277,7 +278,7 @@ const buttonAjoutPhoto = document.createElement("button");
 ajoutPhoto.appendChild(buttonAjoutPhoto);
 buttonAjoutPhoto.textContent = "+ Ajouter photo";
 buttonAjoutPhoto.classList.add("buttonAjouter");
-// Ajouter un event listener au bouton "Ajouter photo" pour écouter le clic
+// Ajoute un event listener au bouton "Ajouter photo" pour écouter le clic
 buttonAjoutPhoto.addEventListener("click", () => {
   // Clique sur l'élément input de type file
   champImage.click();
@@ -318,22 +319,22 @@ champImage.addEventListener("change", handleImageSelection);
 
 // Fonction appelée lorsque l'utilisateur sélectionne une image
 function handleImageSelection() {
-  const file = champImage.files[0]; // Récupérer le fichier sélectionné
+  const file = champImage.files[0]; // Récupére le fichier sélectionné
 
-  // Vérifier si un fichier a été sélectionné
+  // Vérifie si un fichier a été sélectionné
   if (file) {
     // Création d'un objet URL pour afficher l'image sélectionnée
     const imageURL = URL.createObjectURL(file);
 
     // Affichage de l'image dans l'élément img
     imageSelectionnee.src = imageURL;
-    imageSelectionnee.style.display = "block"; // Afficher l'élément img
-    imageSelectionnee.style.width = "129px"; // Largeur souhaitée
-    imageSelectionnee.style.height = "169px"; // Hauteur souhaitée
-    imageSelectionnee.style.margin = "auto"; // Centrer l'image horizontalement dans son conteneur
-    buttonAjoutPhoto.style.display = "none"; // Masquer le bouton "Ajouter photo"
-    faMountain.style.display = "none"; // Masquer l'icône "faMountain"
-    infosPhoto.style.display = "none"; // Masquer les informations de chargement
+    imageSelectionnee.style.display = "block"; // Affiche l'élément img
+    imageSelectionnee.style.width = "129px";
+    imageSelectionnee.style.height = "169px";
+    imageSelectionnee.style.margin = "auto";
+    buttonAjoutPhoto.style.display = "none"; // Masque le bouton "Ajouter photo"
+    faMountain.style.display = "none"; // Masque l'icône "faMountain"
+    infosPhoto.style.display = "none"; // Masque les informations de chargement
   } else {
     // Si aucun fichier n'a été sélectionné, masquer l'élément img et afficher le bouton, l'icône et les informations de chargement
     imageSelectionnee.style.display = "none";
@@ -369,30 +370,30 @@ async function ficheCategories() {
 ficheCategories();
 
 async function envoyerNouvelleRessource() {
-  // Récupérer les valeurs des champs du formulaire
+  // Récupére les valeurs des champs du formulaire
   const titre = document.querySelector("#title").value;
   const categorieId = document.querySelector("#category").value;
 
-  // Vérifier si une image a été sélectionnée
+  // Vérifie si une image a été sélectionnée
   if (!champImage.files[0]) {
     alert("Veuillez sélectionner une image.");
     return;
   }
 
-  // Créer un objet FormData pour envoyer les données via une requête POST avec multipart/form-data
+  // Crée un objet FormData pour envoyer les données via une requête POST avec multipart/form-data
   const formData = new FormData();
   formData.append("image", champImage.files[0]);
   formData.append("title", titre);
   formData.append("category", categorieId);
 
-  // Récupérer le token d'accès depuis le localStorage (assurez-vous que le token est correctement stocké lors de l'authentification)
+  // Récupére le token d'accès depuis le localStorage (assurez-vous que le token est correctement stocké lors de l'authentification)
   const token = localStorage.getItem("accessToken");
   if (!token) {
     console.error("Token d'accès introuvable.");
     return;
   }
 
-  // Effectuer la requête POST à l'API avec le token d'accès dans l'en-tête
+  // Effectue la requête POST à l'API avec le token d'accès dans l'en-tête
   const url = "http://localhost:5678/api/works";
   const init = {
     method: "POST",
@@ -407,10 +408,10 @@ async function envoyerNouvelleRessource() {
     const response = await fetch(url, init);
 
     if (response.ok) {
-      // Si la création de la ressource est réussie, recharger la galerie modale pour afficher la nouvelle ressource
+      // Si la création de la ressource est réussie, recharge la galerie modale pour afficher la nouvelle ressource
       const galleryModale = document.querySelector("#modaleGalerie");
-      galleryModale.innerHTML = ""; // Effacer le contenu actuel de la galerie modale
-      gallerieModale(); // Recharger la galerie modale mise à jour
+      galleryModale.innerHTML = ""; // Efface le contenu actuel de la galerie modale
+      gallerieModale(); // Recharge la galerie modale mise à jour
       alert("Nouvelle ressource créée avec succès !");
     } else {
       alert("Erreur lors de la création de la ressource.");

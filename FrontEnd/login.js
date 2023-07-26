@@ -51,7 +51,7 @@ async function connectAndRedirect() {
     console.error("Erreur lors de la connexion:", error.message);
   }
 }
-connectAndRedirect()
+connectAndRedirect();
 // Fonction pour ajouter la barre de navigation
 function navHeader() {
   // Création dynamique de la nav header + liens actifs
@@ -100,9 +100,10 @@ document.querySelector("#contact").append(buttons);
 // Ajout du lien "Mot de passe oublié"
 const lostMdpBlock = document.createElement("div");
 const lostMdp = document.createElement("a");
-lostMdp.href = "./index.html";
+lostMdp.href = "#";
 lostMdp.textContent = "Mot de passe oublié";
 lostMdp.style.paddingLeft = "20px";
+lostMdp.classList.add("lostMdp");
 lostMdp.id = "lost";
 contact.appendChild(lostMdpBlock);
 lostMdpBlock.appendChild(lostMdp);
@@ -117,6 +118,7 @@ const liFooter = document.createElement("li");
 const lienLiFooter = document.createElement("a");
 lienLiFooter.textContent = "Mentions légales";
 lienLiFooter.style.paddingTop = "100px";
+lienLiFooter.classList.add("lienLiFooter");
 lienLiFooter.id = "LiFooter";
 lienLiFooter.href = "#";
 liFooter.appendChild(lienLiFooter);
