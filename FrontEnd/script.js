@@ -20,17 +20,6 @@ async function callApi() {
     });
   });
 }
-// export function  callApi() {
-//   return new Promise((resolve, reject) => {
-//     fetch(url, init).then((response) => {
-//       if (response.ok) {
-//         resolve(response.json());
-//       } else {
-//         reject(new Error("Impossible de contacter le serveur"));
-//       }
-//     });
-//   });
-// }
 function navHeader() {
   // création dynamique de la nav header +liens actifs//
   //lien projet
@@ -62,6 +51,7 @@ function navHeader() {
   document.querySelector("lienLogin");
   lienLogin.className = "liheader";
   liLogin.appendChild(lienLogin);
+  console.log(liLogin);
 }
 navHeader();
 // récupération de  la promesse couplé a await

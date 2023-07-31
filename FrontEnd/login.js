@@ -5,6 +5,7 @@ async function getLoginToken(email, password) {
   const body = JSON.stringify({ email, password });
 
   try {
+    console.log("Fetching:", urlLogin); // Vérifiez que l'URL est correcte
     const response = await fetch(urlLogin, {
       method: "POST",
       headers: {
@@ -13,6 +14,7 @@ async function getLoginToken(email, password) {
       },
       body: body,
     });
+    console.log("Response status:", response.status); // Vérifiez le statut de la réponse
     if (!response.ok) {
       const errorResponse = await response.json();
       throw new Error(errorResponse.message);
@@ -21,11 +23,11 @@ async function getLoginToken(email, password) {
     const data = await response.json();
     return data.token;
   } catch (error) {
+    console.error("Erreur lors de la requête fetch:", error.message);
     throw new Error("Impossible de contacter le serveur");
   }
 }
 
-// Fonction pour effectuer la connexion et rediriger vers la page1.html
 // Fonction pour effectuer la connexion et rediriger vers la page1.html
 async function connectAndRedirect() {
   try {
@@ -34,30 +36,41 @@ async function connectAndRedirect() {
     const email = emailInput.value;
     const password = passwordInput.value;
 
-    // Récupérer le token en utilisant les identifiants entrés par l'utilisateur
+    // Vérifie si l'e-mail et le mot de passe correspondent aux valeurs attendues
+    if (email !== "sophie.bluel@test.tld" || password !== "S0phie") {
+      // Affiche une alerte indiquant que l'e-mail et/ou le mot de passe sont incorrects
+      alert("Email et/ou mot de passe incorrects. Veuillez réessayer.");
+      return; // Sortir de la fonction pour éviter d'appeler getLoginToken()
+    }
+
+    // Récupére le token en utilisant les identifiants entrés par l'utilisateur
     const token = await getLoginToken(email, password);
 
-    // Vérifier si le token a été récupéré avec succès
+    // Le reste du code reste inchangé...
     if (token) {
-      // Stocker le token dans le localStorage
       localStorage.setItem("accessToken", token);
-
       console.log("Connexion réussie !");
-      window.location.href = "page1.html"; // Redirige vers la page1.html après la connexion réussie
+      window.location.href = "page1.html";
     } else {
-      console.error("Identifiants incorrects");
+      console.log(
+        "Token non récupéré. Identifiants incorrects ou erreur côté serveur."
+      );
+      alert(
+        "Une erreur est survenue lors de la connexion. Veuillez réessayer plus tard."
+      );
     }
   } catch (error) {
     console.error("Erreur lors de la connexion:", error.message);
   }
 }
-connectAndRedirect();
+
 // Fonction pour ajouter la barre de navigation
 function navHeader() {
   // Création dynamique de la nav header + liens actifs
   // Lien projet
   const liProjets = document.querySelector("#projets");
   const lienProjets = document.createElement("a");
+  console.log(liProjets);
   lienProjets.href = "./index.html";
   lienProjets.innerText = "projets";
   lienProjets.className = "liheader";
@@ -66,6 +79,7 @@ function navHeader() {
   // Lien contact
   const liContact = document.querySelector("#contacter");
   const lienContact = document.createElement("a");
+  console.log(liContact);
   lienContact.href = "#";
   lienContact.innerText = "contact";
   lienContact.className = "liheader";
@@ -74,6 +88,7 @@ function navHeader() {
   // Lien Login
   const liLogin = document.querySelector("#login");
   const lienLogin = document.createElement("a");
+  console.log(liLogin);
   lienLogin.href = "#";
   lienLogin.innerText = "login";
   lienLogin.className = "liheader";
@@ -82,10 +97,6 @@ function navHeader() {
 
 // Appel à la fonction navHeader() pour ajouter la barre de navigation
 navHeader();
-
-// J'efface de façon dynamique la zone introduction et portfolio
-document.querySelector("#introduction").remove();
-document.querySelector("#portfolio").remove();
 
 // Création du bouton "Se connecter"
 const buttons = document.createElement("div");
@@ -132,7 +143,7 @@ a.onclick = () => {
   return confirm("Mot de passe Oublié");
 };
 
-// Ajoutez un événement de clic au bouton "Se connecter"
+// Ajout  événement du click au bouton "Se connecter"
 const seConnecter = document.getElementById("seConnecter");
 seConnecter.addEventListener("click", connectAndRedirect);
 
@@ -142,7 +153,17 @@ async function main() {
     const email = "sophie.bluel@test.tld";
     const password = "S0phie";
     const token = await getLoginToken(email, password);
-    console.log("Token récupéré:", token);
+
+    // Vérifier si le token a été récupéré avec succès
+    if (token) {
+      console.log("Token récupéré:", token);
+    } else {
+      console.log(
+        "Token non récupéré. Identifiants incorrects ou erreur côté serveur."
+      );
+      // Affiche une alerte indiquant que l'email et/ou le mot de passe sont incorrects
+      alert("Email et/ou mot de passe incorrects. Veuillez réessayer.");
+    }
   } catch (error) {
     console.error("Erreur lors de la récupération du token:", error.message);
   }
