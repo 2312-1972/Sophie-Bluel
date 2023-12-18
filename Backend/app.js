@@ -15,8 +15,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(helmet({ crossOriginResourcePolicy: false }));
 app.use('/images', express.static(path.join(__dirname, 'images')));
 
-// Retirer l'objet req si non utilisé
-app.get('/', (_, res) => {
+// Ajout de la route pour la racine ("/")
+app.get('/', (req, res) => {
   // Logique pour gérer la page d'accueil
   res.send('Bienvenue sur la page d\'accueil!');
 });
